@@ -1,7 +1,39 @@
 {
   "chapterTitle": "BAB 1 — KEDATANGAN",
-  "startScene": "c1_01",
+  "startScene": "c1_prologue_01",
   "scenes": {
+    "c1_prologue_01": {
+      "speaker": "System",
+      "text": "11:47 PM. Pantai Blackwater. Kamu, Adrian, seorang radio enthusiast yang terobsesi dengan frekuensi aneh, datang ke sini sendirian.",
+      "mood": "calm",
+      "readTime": 5000,
+      "location": "Pantai Blackwater",
+      "autoNext": "c1_prologue_02",
+      "choices": [],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg"
+    },
+    "c1_prologue_02": {
+      "speaker": "System",
+      "text": "Kabut laut mulai menelan tendamu. Kamu menyalakan radio tua milik ayahmu, mencari sinyal di sela-sela statis yang memuakkan.",
+      "mood": "uneasy",
+      "readTime": 5000,
+      "location": "Pantai Blackwater",
+      "autoNext": "c1_prologue_03",
+      "choices": [],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg",
+      "sfx": "radio_static"
+    },
+    "c1_prologue_03": {
+      "speaker": "System",
+      "text": "Tiba-tiba, statis itu berubah. Sebuah frekuensi tertangkap di 96.6 MHz. Suara di baliknya... terdengar seperti seseorang yang kamu kenal.",
+      "mood": "tense",
+      "readTime": 5000,
+      "location": "Pantai Blackwater",
+      "autoNext": "c1_01",
+      "choices": [],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg",
+      "sfx": "heartbeat"
+    },
     "c1_01": {
       "speaker": "Unknown",
       "text": "...kamu bisa mendengarku?",

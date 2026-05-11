@@ -546,7 +546,7 @@ function resolveVotes(scene, votesObj) {
         }
     });
 
-    if (voteEntries.length === 0) { handleNextScene(scene, -1, null); return; }
+    if (voteEntries.length === 0) { handleDeathByTimeout(); return; }
 
     // Hitung vote per pilihan
     const voteCounts = {};
@@ -659,9 +659,9 @@ function handleNextScene(scene, choiceIndex) {
     if (choiceIndex !== -1 && scene.choices && scene.choices[choiceIndex]) {
         nextId = scene.choices[choiceIndex].next;
     } else {
-        const silentChoice = scene.choices?.find(c => c.text === '[Diam]');
-        if (silentChoice) nextId = silentChoice.next;
-        else if (scene.choices?.length > 0) nextId = scene.choices[0].next;
+        // Tidak ada pilihan yang valid → KEMATIAN
+        handleDeathByTimeout();
+        return;
     }
 
     if (nextId) {
