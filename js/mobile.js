@@ -17,7 +17,8 @@ const DOM = {
     statusText: document.getElementById('statusText'),
     timerBar: document.getElementById('timerBar'),
     choicesContainer: document.getElementById('choicesContainer'),
-    moodOverlay: document.getElementById('moodOverlay')  // #7: overlay suasana
+    moodOverlay: document.getElementById('moodOverlay'),
+    resetBtn: document.getElementById('resetGameBtn')  // #2
 };
 
 // ---- VARIABEL STATE ----
@@ -323,7 +324,7 @@ function showEndState() {
     DOM.timerBar.style.width = '0%';
     triggerHaptic([300, 200, 300]);
 
-    // Tombol: Masukkan PIN baru → kembali ke layar join
+    // Tombol dinamis: Masukkan PIN baru → kembali ke layar join
     document.getElementById('mobileNewPinBtn')?.addEventListener('click', () => {
         DOM.controllerScreen.style.display = 'none';
         DOM.joinScreen.style.display = 'block';
@@ -331,8 +332,26 @@ function showEndState() {
         document.body.classList.remove('mood-calm', 'mood-uneasy', 'mood-tense', 'mood-panic', 'mood-corrupted');
     });
 
-    // Tombol: Reload halaman sepenuhnya
+    // Tombol dinamis: Reload halaman sepenuhnya
     document.getElementById('mobileReloadBtn')?.addEventListener('click', () => {
         window.location.reload();
     });
 }
+
+/**
+ * Logika Tombol Reset (#2)
+ */
+DOM.resetBtn?.addEventListener('click', () => {
+    if (confirm('Yakin ingin keluar dan reset permainan di perangkat ini?')) {
+        // Hapus diri sendiri dari room di Firebase
+        if (currentPin && playerId) {
+            import('./core/firebase.js').then(({ remove, ref, db }) => {
+                remove(ref(db, `rooms/${currentPin}/players/${playerId}`));
+            });
+        }
+        
+        // Bersihkan progres lokal mobile dan reload
+        localStorage.removeItem('whisper_player_id');
+        window.location.href = 'index.html';
+    }
+});

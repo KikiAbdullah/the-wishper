@@ -469,12 +469,18 @@ function listenForVotes(scene) {
         if (unsubscribeVotes) { unsubscribeVotes(); unsubscribeVotes = null; }
         get(votesRef).then(snap => {
             const votesData = snap.val();
-            // #3: Jika TIDAK ADA VOTE sama sekali → karakter mati
-            if (!votesData || Object.keys(votesData).length === 0) {
+            console.log("[TV] Voting Timeout. Data:", votesData);
+
+            // #3: Jika TIDAK ADA VOTE (null) atau object kosong → karakter mati
+            if (votesData === null || Object.keys(votesData).length === 0) {
+                console.log("[TV] Memicu adegan Kematian...");
                 handleDeathByTimeout();
             } else {
                 resolveVotes(scene, votesData);
             }
+        }).catch(err => {
+            console.error("[TV] Gagal ambil vote saat timeout:", err);
+            handleDeathByTimeout(); // Anggap mati jika gagal ambil data
         });
     }, maxTime + 500);
 

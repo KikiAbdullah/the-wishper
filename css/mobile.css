@@ -190,6 +190,30 @@
     letter-spacing: 2px;
 }
 
+/* --- TOMBOL RESET MOBILE (#2) --- */
+.reset-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #444;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 10;
+}
+.reset-btn:hover {
+    color: #ff4444;
+    border-color: #ff4444;
+}
+
 /* --- MOOD BACKGROUND OVERLAY (#7: Suasana HP berubah) --- */
 .mood-bg-overlay {
     position: fixed;
