@@ -18,7 +18,12 @@ const DOM = {
     timerBar: document.getElementById('timerBar'),
     choicesContainer: document.getElementById('choicesContainer'),
     moodOverlay: document.getElementById('moodOverlay'),
-    resetBtn: document.getElementById('resetGameBtn')  // #2
+    resetBtn: document.getElementById('resetGameBtn'),
+    nicknameInput: document.getElementById('nicknameInput'),
+    gamePlayArea: document.getElementById('gamePlayArea'),
+    endOverlay: document.getElementById('endStateOverlay'),
+    endTitle: document.getElementById('endStateTitle'),
+    endDesc: document.getElementById('endStateDesc')
 };
 
 // ---- VARIABEL STATE ----
@@ -54,8 +59,9 @@ DOM.overlay.addEventListener('click', () => {
 // ======================================================
 DOM.joinBtn.addEventListener('click', () => {
     const pin = DOM.pinInput.value.trim();
+    const nickname = DOM.nicknameInput.value.trim() || 'PEMAIN';
     if (pin.length === 4) {
-        joinRoom(pin);
+        joinRoom(pin, nickname);
     } else {
         alert("Masukkan 4 digit PIN");
     }
@@ -65,7 +71,7 @@ DOM.joinBtn.addEventListener('click', () => {
  * Bergabung ke room yang ada di Firebase
  * @param {string} pin - 4 digit PIN room
  */
-async function joinRoom(pin) {
+async function joinRoom(pin, nickname) {
     DOM.joinBtn.innerText = "MENGHUBUNGKAN...";
 
     const roomRef = ref(db, `rooms/${pin}`);
@@ -74,11 +80,12 @@ async function joinRoom(pin) {
     if (snapshot.exists()) {
         currentPin = pin;
 
-        // Daftarkan pemain ini ke Firebase
+        // Daftarkan pemain ini ke Firebase dengan nickname
         const playerRef = ref(db, `rooms/${pin}/players/${playerId}`);
         await set(playerRef, {
             joinedAt: Date.now(),
-            status: 'ready'
+            status: 'ready',
+            nickname: nickname
         });
 
         triggerHaptic(200); // Getaran konfirmasi koneksi berhasil!
@@ -102,13 +109,27 @@ async function joinRoom(pin) {
 function listenGameStatus(pin) {
     const statusRef = ref(db, `rooms/${pin}/status`);
     onValue(statusRef, (snap) => {
-        if (!snap.exists()) return;
+        if (!snap.exists()) {
+            // Room dihapus? Kembali ke menu
+            window.location.reload();
+            return;
+        };
         const status = snap.val();
 
+        if (status === 'lobby') {
+            // AUTO-RESTART: Jika Host restart ke lobby (@alur proper)
+            DOM.endOverlay.style.display = 'none';
+            DOM.gamePlayArea.style.display = 'block';
+            showWaitingState("TERHUBUNG — MENUNGGU HOST...");
+            document.body.classList.remove('mood-calm', 'mood-uneasy', 'mood-tense', 'mood-panic', 'mood-corrupted');
+        }
+
         if (status === 'playing') {
+            DOM.endOverlay.style.display = 'none';
+            DOM.gamePlayArea.style.display = 'block';
             DOM.statusText.innerText = "TERHUBUNG — PERHATIKAN TV";
             DOM.statusText.style.color = "#555";
-            triggerHaptic([100, 100, 200]); // Getaran heartbeat!
+            triggerHaptic([100, 100, 200]);
 
             // Mulai menangkap perintah UI dari TV
             listenMobilePayload(pin);
@@ -310,32 +331,14 @@ function showWaitingState(message) {
 function showEndState() {
     clearInterval(timerInterval);
     changeMood('corrupted');
-    DOM.statusText.innerText = "PERMAINAN BERAKHIR";
-    DOM.statusText.style.color = "#ff3333";
-    DOM.choicesContainer.innerHTML = `
-        <p style="color:#444;font-size:0.85rem;letter-spacing:3px;margin-top:20px;text-align:center;">
-            — THE WHISPERS —
-        </p>
-        <div style="margin-top:30px;display:flex;flex-direction:column;gap:12px;width:100%;">
-            <button id="mobileNewPinBtn" style="background:transparent;border:1px solid #ff4444;color:#ff4444;padding:14px;font-family:var(--font-horror);font-size:1rem;letter-spacing:3px;cursor:pointer;">MASUKKAN PIN BARU</button>
-            <button id="mobileReloadBtn" style="background:transparent;border:1px solid #555;color:#888;padding:14px;font-family:var(--font-horror);font-size:1rem;letter-spacing:3px;cursor:pointer;">MULAI ULANG</button>
-        </div>
-    `;
-    DOM.timerBar.style.width = '0%';
+    
+    // Tampilkan overlay ending yang sinkron (@alur proper)
+    DOM.gamePlayArea.style.display = 'none';
+    DOM.endOverlay.style.display = 'flex';
+    DOM.endTitle.innerText = "PERMAINAN BERAKHIR";
+    DOM.endDesc.innerText = "Kisahmu telah mencapai titik akhir. Menunggu keputusan Host di TV...";
+
     triggerHaptic([300, 200, 300]);
-
-    // Tombol dinamis: Masukkan PIN baru → kembali ke layar join
-    document.getElementById('mobileNewPinBtn')?.addEventListener('click', () => {
-        DOM.controllerScreen.style.display = 'none';
-        DOM.joinScreen.style.display = 'block';
-        DOM.pinInput.value = '';
-        document.body.classList.remove('mood-calm', 'mood-uneasy', 'mood-tense', 'mood-panic', 'mood-corrupted');
-    });
-
-    // Tombol dinamis: Reload halaman sepenuhnya
-    document.getElementById('mobileReloadBtn')?.addEventListener('click', () => {
-        window.location.reload();
-    });
 }
 
 /**

@@ -41,7 +41,7 @@ export class UIEngine {
         const speakerLabel = (speaker === "Unknown") ? "??" : speaker;
 
         // Susun struktur HTML: nama pembicara di atas, teks dialog di bawah
-        this.subtitleElement.innerHTML = `<span class="speaker-name">${speakerLabel}</span><br><span id="speechText"></span>`;
+        this.subtitleElement.innerHTML = `<span class="speaker-name">${speakerLabel}</span><span id="speechText"></span>`;
         const speechSpan = document.getElementById('speechText');
 
         // Olah teks: jika entitas, acak sebagian karakter menjadi glitch

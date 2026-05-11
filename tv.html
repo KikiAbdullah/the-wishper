@@ -30,10 +30,15 @@
     <!-- Kontainer Utama TV -->
     <div id="tvContainer" style="display:none;">
 
+        <!-- Persistent Logo & Game Title (selalu terlihat di semua layar) -->
+        <div id="persistentHeader" style="position:fixed;top:20px;right:25px;z-index:50;display:flex;align-items:center;gap:12px;pointer-events:none;">
+            <img src="assets/images/logo/logo-white.png" alt="Logo" style="max-height:80px;border-radius:6px;opacity:0.6;">
+        </div>
+
         <!-- HUD (Heads-Up Display) -->
         <div class="tv-hud hud-location" id="hudLocation">BLACKWATER POINT</div>
         <div class="tv-hud hud-radio" id="hudRadio">SIGNAL <span class="signal-dot"></span></div>
-        <div class="tv-hud" id="hudChapter" style="top:20px;right:25px;opacity:0.4;font-size:0.75rem;letter-spacing:3px;"></div>
+        <div class="tv-hud" id="hudChapter" style="top:110px;right:25px;opacity:0.4;font-size:0.75rem;letter-spacing:3px;"></div>
         <!-- HUD PIN: Tampil saat permainan berlangsung agar pemain bisa join kapan saja -->
         <div class="tv-hud" id="hudPin" style="bottom:20px;left:25px;opacity:0.35;font-size:0.8rem;letter-spacing:4px;display:none;"></div>
 
@@ -70,7 +75,9 @@
 
         <!-- ============ LAYAR PERMAINAN ============ -->
         <div class="game-screen" id="gameScreen" style="display:none;">
-            <div id="subtitleText"></div>
+            <!-- Background sinematik per scene -->
+            <div id="sceneBg" style="position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;opacity:0.15;transition:opacity 1s, background-image 1.5s;"></div>
+            <div id="subtitleText" style="position:relative;z-index:2;"></div>
             <!-- Panel Vote Tracker (kanan layar) -->
             <div id="voteTrackerPanel" class="vote-tracker"></div>
         </div>

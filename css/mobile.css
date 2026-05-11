@@ -32,7 +32,8 @@
     font-size: 2rem;
     letter-spacing: 10px;
     margin-top: 10px;
-    width: 180px;
+    width: 100%;
+    box-sizing: border-box;
     transition: border-color 0.3s;
 }
 
@@ -196,8 +197,8 @@
     top: 15px;
     right: 15px;
     background: transparent;
-    border: 1px solid rgba(255,255,255,0.1);
-    color: #444;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--color-text-dim);
     width: 35px;
     height: 35px;
     border-radius: 50%;

@@ -71,3 +71,30 @@ export function stopAllAudio() {
     }
     currentMood = null;
 }
+
+const SFX_SOURCES = {
+    radio_static: 'assets/audio/sfx/radio.mp3',
+    door_creak: 'assets/audio/sfx/door.mp3',
+    heartbeat:'assets/audio/sfx/heartbeat.mp3',
+    scream: 'assets/audio/sfx/scream.mp3',
+};
+
+/**
+ * Memainkan efek suara sekali putar (one-shot)
+ * @param {string} sfxName - Nama sfx sesuai daftar SFX_SOURCES
+ */
+export function playSFX(sfxName) {
+    if (!sfxName || !SFX_SOURCES[sfxName]) return;
+    
+    try {
+        const sfx = new Howl({
+            src: [SFX_SOURCES[sfxName]],
+            volume: 0.6,
+            html5: false
+        });
+        sfx.play();
+        console.log(`[Audio Engine] SFX dimainkan: ${sfxName}`);
+    } catch (e) {
+        console.warn("[Audio Engine] Gagal memutar SFX:", e);
+    }
+}

@@ -13,6 +13,11 @@
 </head>
 <body style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;touch-action:none;">
 
+    <!-- Persistent Logo & Game Title (selalu terlihat) -->
+    <div id="mobilePersistentHeader" style="position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:8px;pointer-events:none;">
+         <img src="assets/images/logo/logo-white.png" alt="Logo" style="max-height:100px;border-radius:6px;margin-bottom:20px;">
+    </div>
+
     <!-- Overlay Suasana (#7: berubah warna sesuai mood TV) -->
     <div id="moodOverlay" class="mood-bg-overlay"></div>
 
@@ -24,20 +29,36 @@
 
     <!-- LAYAR JOIN (Masukkan PIN / Scan QR) -->
     <div id="joinScreen" style="display:none;" class="join-screen-inner">
-        <h3>SCAN QR ATAU MASUKKAN PIN</h3>
+        <h3>GABUNG PERMAINAN</h3>
         <div id="reader" style="width:100%;max-width:300px;margin:15px auto;"></div>
-        <p>ATAU KETIK PIN</p>
-        <input type="text" id="pinInput" class="pin-input" maxlength="4" placeholder="----" inputmode="numeric">
-        <br>
-        <button class="join-btn" id="joinRoomBtn">GABUNG</button>
+        
+        <div style="display:flex;flex-direction:column;gap:10px;width:100%;max-width:300px;margin:0 auto;">
+            <p style="margin:0;font-size:0.7rem;letter-spacing:2px;color:#555;">MASUKKAN PIN</p>
+            <input type="text" id="pinInput" class="pin-input" maxlength="4" placeholder="----" inputmode="numeric">
+            
+            <p style="margin:10px 0 0;font-size:0.7rem;letter-spacing:2px;color:#555;">NAMA PANGGILAN</p>
+            <input type="text" id="nicknameInput" class="pin-input" maxlength="10" placeholder="PEMAIN" style="letter-spacing:4px;">
+            
+            <button class="join-btn" id="joinRoomBtn" style="margin-top:10px; width:100%; box-sizing:border-box;">GABUNG</button>
+        </div>
     </div>
 
     <!-- LAYAR CONTROLLER (Area Pilihan Dalam Game) -->
     <div id="controllerScreen" style="display:none;" class="controller-screen">
         <button id="resetGameBtn" class="reset-btn" title="Reset/Keluar">✕</button>
         <div id="timerBar" class="timer-ring"></div>
-        <h3 id="statusText">MENUNGGU ADEGAN...</h3>
-        <div id="choicesContainer"></div>
+        
+        <div id="gamePlayArea">
+            <h3 id="statusText">MENUNGGU ADEGAN...</h3>
+            <div id="choicesContainer"></div>
+        </div>
+
+        <!-- Layer Akhir Permainan (Ditampilkan saat ending saja) -->
+        <div id="endStateOverlay" style="display:none; position:absolute; inset:0; background:var(--color-bg); z-index:20; flex-direction:column; align-items:center; justify-content:center; padding:20px; text-align:center;">
+            <h2 id="endStateTitle" style="color:var(--color-accent-red); font-family:var(--font-horror); letter-spacing:4px;">PERMAINAN BERAKHIR</h2>
+            <p id="endStateDesc" style="font-size:0.8rem; letter-spacing:2px; margin-top:20px; color:#666;">Menunggu Host...</p>
+            <p style="margin-top:40px; color:#333; font-size:0.7rem;">— THE WHISPERS —</p>
+        </div>
     </div>
 
     <script type="module" src="js/mobile.js"></script>

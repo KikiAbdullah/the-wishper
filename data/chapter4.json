@@ -3,102 +3,247 @@
   "startScene": "c4_01",
   "scenes": {
     "c4_01": {
-      "speaker": "Luna", "text": "Ini dia. Pemancar radio itu. Tapi frekuensinya terkunci. Kita butuh kode untuk membukanya.", "mood": "tense",
-      "timer": 12000, "readTime": 4000, "location": "Puncak Mercusuar",
+      "speaker": "Luna",
+      "text": "Ini dia. Pemancar radio itu. Tapi frekuensinya terkunci. Kita butuh kode untuk membukanya.",
+      "mood": "tense",
+      "timer": 12000,
+      "readTime": 4000,
+      "location": "Puncak Mercusuar",
       "choices": [
-        { "text": "Kode apa? Di mana kita bisa menemukannya?", "next": "c4_02" },
-        { "text": "Coba paksa saja.", "next": "c4_02_force" }
-      ]
+        {
+          "text": "Kode apa? Di mana kita bisa menemukannya?",
+          "next": "c4_02"
+        },
+        {
+          "text": "Coba paksa saja.",
+          "next": "c4_02_force"
+        }
+      ],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg"
     },
     "c4_02": {
-      "speaker": "Luna", "text": "Ada catatan di bunker bawah tanah. Para peneliti dulu mencatat semuanya. Tapi bunker itu... sudah lama ditutup.", "mood": "tense",
-      "timer": 12000, "readTime": 4000, "location": "Puncak Mercusuar",
+      "speaker": "Luna",
+      "text": "Ada catatan di bunker bawah tanah. Para peneliti dulu mencatat semuanya. Tapi bunker itu... sudah lama ditutup.",
+      "mood": "tense",
+      "timer": 12000,
+      "readTime": 4000,
+      "location": "Puncak Mercusuar",
       "choices": [
-        { "text": "Aku akan ke bunker.", "next": "c4_03" },
-        { "text": "Apakah tidak berbahaya?", "next": "c4_03_warn" }
-      ]
+        {
+          "text": "Aku akan ke bunker.",
+          "next": "c4_03"
+        },
+        {
+          "text": "Apakah tidak berbahaya?",
+          "next": "c4_03_warn"
+        }
+      ],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg"
     },
     "c4_02_force": {
-      "speaker": "Entity", "text": "Ya... paksa saja. Hancurkan. Buka semuanya. Aku sudah menunggu seseorang yang cukup berani... atau cukup bodoh.", "mood": "corrupted",
-      "timer": 8000, "readTime": 4000, "location": "Puncak Mercusuar", "entityEffect": true,
+      "speaker": "Entity",
+      "text": "Ya... paksa saja. Hancurkan. Buka semuanya. Aku sudah menunggu seseorang yang cukup berani... atau cukup bodoh.",
+      "mood": "corrupted",
+      "timer": 8000,
+      "readTime": 4000,
+      "location": "Puncak Mercusuar",
+      "entityEffect": true,
       "choices": [
-        { "text": "[Hancurkan pemancar]", "next": "c4_end_destroy" },
-        { "text": "Tidak. Aku butuh kode yang benar.", "next": "c4_03" }
-      ]
+        {
+          "text": "[Hancurkan pemancar]",
+          "next": "c4_end_destroy"
+        },
+        {
+          "text": "Tidak. Aku butuh kode yang benar.",
+          "next": "c4_03"
+        }
+      ],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg",
+      "sfx": "radio_static"
     },
     "c4_03": {
-      "speaker": "Unknown", "text": "Tangga menuju bawah tanah gelap dan lembab. Bau karat dan sesuatu yang membusuk.", "mood": "uneasy",
-      "timer": 10000, "readTime": 4000, "location": "Tangga Bawah Tanah",
+      "speaker": "Unknown",
+      "text": "Tangga menuju bawah tanah gelap dan lembab. Bau karat dan sesuatu yang membusuk.",
+      "mood": "uneasy",
+      "timer": 10000,
+      "readTime": 4000,
+      "location": "Tangga Bawah Tanah",
       "choices": [
-        { "text": "Terus turun.", "next": "c4_04" },
-        { "text": "[Kembali ke atas]", "next": "c4_end_retreat" }
-      ]
+        {
+          "text": "Terus turun.",
+          "next": "c4_04"
+        },
+        {
+          "text": "[Kembali ke atas]",
+          "next": "c4_end_retreat"
+        }
+      ],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg"
     },
     "c4_03_warn": {
-      "speaker": "Luna", "text": "Berbahaya? Ya. Tapi kalau kita tidak mendapat kode itu, kita tidak bisa memutus koneksi entitas. Dan dia akan terus kuat.", "mood": "tense",
-      "timer": 10000, "readTime": 4000, "location": "Puncak Mercusuar",
+      "speaker": "Luna",
+      "text": "Berbahaya? Ya. Tapi kalau kita tidak mendapat kode itu, kita tidak bisa memutus koneksi entitas. Dan dia akan terus kuat.",
+      "mood": "tense",
+      "timer": 10000,
+      "readTime": 4000,
+      "location": "Puncak Mercusuar",
       "choices": [
-        { "text": "Baiklah. Aku turun.", "next": "c4_04" }
-      ]
+        {
+          "text": "Baiklah. Aku turun.",
+          "next": "c4_04"
+        }
+      ],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg"
     },
     "c4_04": {
-      "speaker": "Unknown", "text": "Di dinding bunker, ada tulisan tangan yang memudar: 'KODE = TANGGAL EKSPERIMEN PERTAMA'. Di bawahnya tertulis angka: 19-08-87.", "mood": "tense",
-      "timer": 14000, "readTime": 5000, "location": "Bunker Pintu Masuk",
+      "speaker": "Unknown",
+      "text": "Di dinding bunker, ada tulisan tangan yang memudar: 'KODE = TANGGAL EKSPERIMEN PERTAMA'. Di bawahnya tertulis angka: 19-08-87.",
+      "mood": "tense",
+      "timer": 14000,
+      "readTime": 5000,
+      "location": "Bunker Pintu Masuk",
       "choices": [
-        { "text": "Catat kodenya: 190887.", "next": "c4_05" },
-        { "text": "Jelajahi lebih dalam.", "next": "c4_05_deep" }
-      ]
+        {
+          "text": "Catat kodenya: 190887.",
+          "next": "c4_05"
+        },
+        {
+          "text": "Jelajahi lebih dalam.",
+          "next": "c4_05_deep"
+        }
+      ],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg"
     },
     "c4_05": {
-      "speaker": "Luna", "text": "Bagus! Kembali ke atas, masukkan kodenya. Cepat, sebelum dia menyadari apa yang kita lakukan!", "mood": "tense",
-      "readTime": 4000, "location": "Bunker Pintu Masuk",
-      "autoNext": "c4_next_chapter", "choices": []
+      "speaker": "Luna",
+      "text": "Bagus! Kembali ke atas, masukkan kodenya. Cepat, sebelum dia menyadari apa yang kita lakukan!",
+      "mood": "tense",
+      "readTime": 4000,
+      "location": "Bunker Pintu Masuk",
+      "autoNext": "c4_next_chapter",
+      "choices": [],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg"
     },
     "c4_05_deep": {
-      "speaker": "Unknown", "text": "Lebih dalam, kamu menemukan ruangan penuh foto-foto hitam putih. Wajah-wajah yang dicoret. Dan satu nama yang terus berulang: LUNA.", "mood": "panic",
-      "timer": 10000, "readTime": 5000, "location": "Bunker Ruang Arsip", "entityEffect": true,
+      "speaker": "Unknown",
+      "text": "Lebih dalam, kamu menemukan ruangan penuh foto-foto hitam putih. Wajah-wajah yang dicoret. Dan satu nama yang terus berulang: LUNA.",
+      "mood": "panic",
+      "timer": 10000,
+      "readTime": 5000,
+      "location": "Bunker Ruang Arsip",
+      "entityEffect": true,
       "choices": [
-        { "text": "...Luna? Apa artinya ini?", "next": "c4_05_revelation" },
-        { "text": "Aku harus pergi dari sini SEKARANG.", "next": "c4_end_panicked" }
-      ]
+        {
+          "text": "...Luna? Apa artinya ini?",
+          "next": "c4_05_revelation"
+        },
+        {
+          "text": "Aku harus pergi dari sini SEKARANG.",
+          "next": "c4_end_panicked"
+        }
+      ],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg",
+      "sfx": "radio_static"
     },
     "c4_05_revelation": {
-      "speaker": "Entity", "text": "Kamu mulai mengerti. Luna bukan manusia. Luna adalah nama yang kami berikan pada frekuensi pertama. Luna adalah aku.", "mood": "corrupted",
-      "timer": 8000, "readTime": 5000, "location": "Bunker Ruang Arsip", "entityEffect": true,
+      "speaker": "Entity",
+      "text": "Kamu mulai mengerti. Luna bukan manusia. Luna adalah nama yang kami berikan pada frekuensi pertama. Luna adalah aku.",
+      "mood": "corrupted",
+      "timer": 8000,
+      "readTime": 5000,
+      "location": "Bunker Ruang Arsip",
+      "entityEffect": true,
       "choices": [
-        { "text": "[Lari ke atas dengan kode]", "next": "c4_next_chapter" },
-        { "text": "[Terdiam. Menerima.]", "next": "c4_end_accepted" }
-      ]
+        {
+          "text": "[Lari ke atas dengan kode]",
+          "next": "c4_next_chapter"
+        },
+        {
+          "text": "[Terdiam. Menerima.]",
+          "next": "c4_end_accepted"
+        }
+      ],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg",
+      "sfx": "radio_static"
     },
     "c4_next_chapter": {
-      "speaker": "System", "text": "Bab 4 selesai. Kode telah ditemukan. Tapi kebenaran juga...", "mood": "calm",
-      "readTime": 4000, "location": "Mercusuar",
-      "nextChapter": 5, "choices": []
+      "speaker": "System",
+      "text": "Bab 4 selesai. Kode telah ditemukan. Tapi kebenaran juga...",
+      "mood": "calm",
+      "readTime": 4000,
+      "location": "Mercusuar",
+      "nextChapter": 5,
+      "choices": [],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg"
     },
     "c4_end_destroy": {
-      "speaker": "Entity", "text": "Kamu menghancurkan pemancar. Ledakan frekuensi memenuhi ruangan. Dan sekarang... aku bebas. Terima kasih.", "mood": "corrupted",
-      "readTime": 7000, "location": "Puncak Mercusuar", "entityEffect": true,
-      "ending": true, "endingTitle": "PEMBEBASAN ENTITAS", "endingDesc": "Menghancurkan pemancar membebaskan entitas dari pulau. Sekarang dia ada di mana-mana.", "choices": []
+      "speaker": "Entity",
+      "text": "Kamu menghancurkan pemancar. Ledakan frekuensi memenuhi ruangan. Dan sekarang... aku bebas. Terima kasih.",
+      "mood": "corrupted",
+      "readTime": 7000,
+      "location": "Puncak Mercusuar",
+      "entityEffect": true,
+      "ending": true,
+      "endingTitle": "PEMBEBASAN ENTITAS",
+      "endingDesc": "Menghancurkan pemancar membebaskan entitas dari pulau. Sekarang dia ada di mana-mana.",
+      "choices": [],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg",
+      "sfx": "radio_static"
     },
     "c4_end_retreat": {
-      "speaker": "Unknown", "text": "Kamu kembali ke atas. Pintu mercusuar sudah tertutup. Kamu terjebak antara atas dan bawah. Selamanya.", "mood": "panic",
-      "readTime": 6000, "location": "Tangga Mercusuar",
-      "ending": true, "endingTitle": "TERJEBAK DI ANTARA", "endingDesc": "Ketakutan membuatmu ragu. Dan keragu-raguan membuatmu terjebak.", "choices": []
+      "speaker": "Unknown",
+      "text": "Kamu kembali ke atas. Pintu mercusuar sudah tertutup. Kamu terjebak antara atas dan bawah. Selamanya.",
+      "mood": "panic",
+      "readTime": 6000,
+      "location": "Tangga Mercusuar",
+      "ending": true,
+      "endingTitle": "TERJEBAK DI ANTARA",
+      "endingDesc": "Ketakutan membuatmu ragu. Dan keragu-raguan membuatmu terjebak.",
+      "choices": [],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg",
+      "sfx": "scream"
     },
     "c4_end_panicked": {
-      "speaker": "Entity", "text": "Lari? Ke mana? Pintu sudah tertutup. Kamu pikir bunker ini punya jalan keluar? Ini kubur mereka. Dan sekarang juga kuburmu.", "mood": "corrupted",
-      "readTime": 7000, "location": "Bunker", "entityEffect": true,
-      "ending": true, "endingTitle": "KUBUR DI BUNKER", "endingDesc": "Panic membuatmu terjebak. Bunker menjadi kuburmu.", "choices": []
+      "speaker": "Entity",
+      "text": "Lari? Ke mana? Pintu sudah tertutup. Kamu pikir bunker ini punya jalan keluar? Ini kubur mereka. Dan sekarang juga kuburmu.",
+      "mood": "corrupted",
+      "readTime": 7000,
+      "location": "Bunker",
+      "entityEffect": true,
+      "ending": true,
+      "endingTitle": "KUBUR DI BUNKER",
+      "endingDesc": "Panic membuatmu terjebak. Bunker menjadi kuburmu.",
+      "choices": [],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg",
+      "sfx": "radio_static"
     },
     "c4_end_accepted": {
-      "speaker": "Entity", "text": "Bagus. Kamu menerima. Tidak melawan. Itu lebih mudah, bukan? Sekarang istirahat. Selamanya.", "mood": "corrupted",
-      "readTime": 7000, "location": "???", "entityEffect": true,
-      "ending": true, "endingTitle": "PENYERAHAN DIRI", "endingDesc": "Kamu berhenti melawan. Entitas mengklaim jiwamu.", "choices": []
+      "speaker": "Entity",
+      "text": "Bagus. Kamu menerima. Tidak melawan. Itu lebih mudah, bukan? Sekarang istirahat. Selamanya.",
+      "mood": "corrupted",
+      "readTime": 7000,
+      "location": "???",
+      "entityEffect": true,
+      "ending": true,
+      "endingTitle": "PENYERAHAN DIRI",
+      "endingDesc": "Kamu berhenti melawan. Entitas mengklaim jiwamu.",
+      "choices": [],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg",
+      "sfx": "radio_static"
     },
     "c4_end_luna_is_entity": {
-      "speaker": "Entity", "text": "Kamu terlalu percaya. Luna tidak pernah ada. Hanya aku. Sejak awal. Dan kamu sudah terlalu jauh untuk kembali.", "mood": "corrupted",
-      "readTime": 7000, "location": "???", "entityEffect": true,
-      "ending": true, "endingTitle": "LUNA TIDAK PERNAH ADA", "endingDesc": "Sejak awal, yang membimbingmu adalah entitas. Luna hanya ilusi.", "choices": []
+      "speaker": "Entity",
+      "text": "Kamu terlalu percaya. Luna tidak pernah ada. Hanya aku. Sejak awal. Dan kamu sudah terlalu jauh untuk kembali.",
+      "mood": "corrupted",
+      "readTime": 7000,
+      "location": "???",
+      "entityEffect": true,
+      "ending": true,
+      "endingTitle": "LUNA TIDAK PERNAH ADA",
+      "endingDesc": "Sejak awal, yang membimbingmu adalah entitas. Luna hanya ilusi.",
+      "choices": [],
+      "background_url": "https://adventuregamehotspot.com/images/posts/6193/34804-the-lightkeeper-review-teaser.jpg",
+      "sfx": "radio_static"
     }
   }
 }

@@ -43,7 +43,8 @@ const ALL_ENDINGS = [
     { title: "ENTITAS DIBEBASKAN", desc: "Bisikan di setiap frekuensi dunia." },
     { title: "PENJAGA BARU", desc: "Menjadi penghuni tetap frekuensi." },
     { title: "MELARIKAN DIRI", desc: "Lolos... tapi bisikan tetap ada." },
-    { title: "HILANG DALAM SENYAP", desc: "Identitasmu diambil alih." }
+    { title: "HILANG DALAM SENYAP", desc: "Identitasmu diambil alih." },
+    { title: "KEMATIAN OLEH KETIDAKPEDULIAN", desc: "Kamu tidak memilih, dan keheningan membunuhmu." }
 ];
 
 // ---- REFERENSI ELEMEN DOM ----
@@ -211,11 +212,12 @@ async function initLobby() {
         DOM.connectedPlayers.innerHTML = '';
         let count = 0;
         if (snapshot.exists()) {
-            snapshot.forEach(() => {
+            snapshot.forEach((pSnap) => {
                 count++;
+                const player = pSnap.val();
                 const div = document.createElement('div');
-                div.style.cssText = "margin-top:8px;color:#33cccc;letter-spacing:4px;font-size:0.9rem;font-family:var(--font-mono);";
-                div.innerText = `◉ PEMAIN ${count} TERHUBUNG`;
+                div.style.cssText = 'margin-top:8px;color:#33cccc;letter-spacing:4px;font-size:0.9rem;font-family:var(--font-mono);';
+                div.innerText = `◉ ${player.nickname || 'PEMAIN'} TERHUBUNG`;
                 DOM.connectedPlayers.appendChild(div);
             });
         }
@@ -344,8 +346,23 @@ function renderScene(sceneId) {
     // Perbarui HUD lokasi
     uiEngine.updateHUD(scene.location || 'TIDAK DIKETAHUI');
 
+    // Render background sinematik jika ada
+    const sceneBg = document.getElementById('sceneBg');
+    if (sceneBg && scene.background_url) {
+        sceneBg.style.backgroundImage = `url('${scene.background_url}')`;
+        sceneBg.style.opacity = '0.15';
+    } else if (sceneBg) {
+        sceneBg.style.backgroundImage = 'none';
+        sceneBg.style.opacity = '0';
+    }
+
     // Mainkan ambient audio
     playAmbient(scene.mood || 'calm');
+
+    // #SFX: Mainkan one-shot SFX jika ada di naskah
+    if (scene.sfx) {
+        import('./engine/audio.js').then(({ playSFX }) => playSFX(scene.sfx));
+    }
 
     // Efek fade transisi
     if (DOM.sceneFade) {
@@ -493,8 +510,10 @@ function listenForVotes(scene) {
         let totalVotes = 0;
         Object.keys(votesObj).forEach(() => { totalVotes++; });
 
-        // Update vote tracker visual di TV
-        updateVoteTracker(scene, votesObj);
+        // Update vote tracker visual di TV (Tarik data pemain untuk Nama Panggilan)
+        get(ref(db, `rooms/${roomPin}/players`)).then(pSnap => {
+            updateVoteTracker(scene, votesObj, pSnap.val() || {});
+        });
 
         // Semua pemain sudah vote → langsung resolve (hentikan countdown)
         if (totalVotes > 0 && totalVotes >= roomPlayerCount) {
@@ -575,24 +594,21 @@ function resolveVotes(scene, votesObj) {
 /**
  * Tampilkan vote tracker panel di TV (#6/#8)
  */
-function updateVoteTracker(scene, votesObj) {
+function updateVoteTracker(scene, votesObj, playersObj = {}) {
     if (!scene.choices || !DOM.voteTracker) return;
     DOM.voteTracker.innerHTML = '';
     DOM.voteTracker.classList.add('visible');
 
     // Kelompokkan votes per pilihan
     const groups = {};
-    let voterNum = 1;
-    const voterLabels = {};  // Map playerId → "Pemain X"
 
     Object.entries(votesObj).forEach(([pid, v]) => {
         if (v.choiceIndex === undefined || v.choiceIndex === -1) return;
-        if (!voterLabels[pid]) {
-            voterLabels[pid] = `P${voterNum}`;
-            voterNum++;
-        }
+        
+        const nickname = playersObj[pid]?.nickname || `P${pid.slice(-3)}`;
+        
         if (!groups[v.choiceIndex]) groups[v.choiceIndex] = [];
-        groups[v.choiceIndex].push(voterLabels[pid]);
+        groups[v.choiceIndex].push(nickname);
     });
 
     // Render setiap pilihan
@@ -711,13 +727,11 @@ async function quickRestart() {
     localStorage.setItem('whisper_chapter', '1');
     localStorage.removeItem('whisper_scene');
 
-    // Reset room di Firebase
-    await set(ref(db, `rooms/${roomPin}`), {
-        status: 'lobby',
-        createdAt: Date.now(),
-        hostId: 'tv_host',
-        chapter: 1
-    });
+    // Reset room di Firebase (Keep members!)
+    await set(ref(db, `rooms/${roomPin}/status`), 'lobby');
+    await set(ref(db, `rooms/${roomPin}/votes`), null);
+    await set(ref(db, `rooms/${roomPin}/state`), { currentScene: null, mobileView: { status: 'transitioning' }});
+    await set(ref(db, `rooms/${roomPin}/chapter`), 1);
 
     // Muat ulang chapter 1
     const isLoaded = await loadChapter(1);
@@ -729,30 +743,23 @@ async function quickRestart() {
     document.getElementById('endScreenContainer').innerHTML = '';
     hideVoteTracker();
 
-    // Langsung ke lobby (tunggu pemain reconnect)
+    // Langsung ke lobby
     DOM.gameScreen.style.display = 'none';
     DOM.lobbyScreen.style.display = 'flex';
     DOM.pinDisplay.innerText = roomPin;
 
-    // QR Code refresh
-    const joinUrl = `${window.location.origin}/mobile.html?pin=${roomPin}`;
-    DOM.qrcode.innerHTML = '';
-    new QRCode(DOM.qrcode, {
-        text: joinUrl, width: 180, height: 180,
-        colorDark: '#ffffff', colorLight: '#000000'
-    });
-
-    // Pantau pemain masuk
+    // Refresh list Nama Pemain
     const playersRef = ref(db, `rooms/${roomPin}/players`);
     onValue(playersRef, (snapshot) => {
         DOM.connectedPlayers.innerHTML = '';
         let count = 0;
         if (snapshot.exists()) {
-            snapshot.forEach(() => {
+            snapshot.forEach((pSnap) => {
                 count++;
+                const player = pSnap.val();
                 const div = document.createElement('div');
                 div.style.cssText = 'margin-top:8px;color:#33cccc;letter-spacing:4px;font-size:0.9rem;font-family:var(--font-mono);';
-                div.innerText = `◉ PEMAIN ${count} TERHUBUNG`;
+                div.innerText = `◉ ${player.nickname || 'PEMAIN'} TERHUBUNG`;
                 DOM.connectedPlayers.appendChild(div);
             });
         }

@@ -54,10 +54,12 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Teks persis di tengah layar */
+    justify-content: center;
     align-items: center;
     position: relative;
     z-index: 2;
+    padding: 60px 40px;
+    box-sizing: border-box;
 }
 
 /* --- HUD (Heads-Up Display) --- */
@@ -75,6 +77,13 @@
 .hud-location {
     top: 20px;
     left: 25px;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    color: #777;
+    opacity: 0.8;
+    background: rgba(0,0,0,0.4);
+    padding: 6px 14px;
+    border-left: 2px solid var(--color-accent-cyan, #33cccc);
 }
 
 /* Kanan Bawah: Indikator sinyal radio */
@@ -98,28 +107,29 @@
     50% { opacity: 1; }
 }
 
-/* --- SUBTITLE TEXT (Teks Dialog Cinematic) --- */
 .subtitle-text {
-    font-size: 2.8rem;
+    font-size: 2rem;
     font-family: var(--font-horror);
     letter-spacing: 2px;
-    max-width: 75%;
+    max-width: 70%;
     text-align: center;
-    line-height: 1.6;
+    line-height: 1.7;
     transition: color 0.5s, text-shadow 0.5s;
     position: relative;
     z-index: 5;
+    margin: 0 auto;
 }
 
 /* Nama karakter yang berbicara */
 .speaker-name {
-    font-size: 1.2rem;
-    color: var(--color-text-dim);
-    letter-spacing: 8px;
+    font-size: 1rem;
+    color: var(--color-accent-cyan, #33cccc);
+    letter-spacing: 10px;
     text-transform: uppercase;
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     font-family: var(--font-mono);
+    opacity: 0.9;
 }
 
 /* --- ATMOSPHERIC OVERLAYS --- */
