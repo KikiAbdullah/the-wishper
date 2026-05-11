@@ -1,0 +1,97 @@
+{
+  "chapterTitle": "BAB 6 — KEBENARAN",
+  "startScene": "c6_01",
+  "scenes": {
+    "c6_01": {
+      "speaker": "Unknown", "text": "Mercusuar kembali hening. Tapi di lantai bawah, kamu menemukan sebuah rekaman audio tua bertanggal 19 Agustus 1987.", "mood": "uneasy",
+      "timer": 12000, "readTime": 5000, "location": "Mercusuar Lantai Bawah",
+      "choices": [
+        { "text": "[Putar rekaman]", "next": "c6_02_play" },
+        { "text": "Abaikan. Cari jalan keluar.", "next": "c6_02_exit" }
+      ]
+    },
+    "c6_02_play": {
+      "speaker": "Dr. Harlan", "text": "Catatan Dr. Harlan, 19 Agustus 1987. Kami berhasil menangkap sinyal dari dimensi lain. Tapi sinyal itu... bukan hanya suara. Dia hidup. Dia belajar. Dia meniru.", "mood": "tense",
+      "timer": 14000, "readTime": 5000, "location": "Mercusuar Lantai Bawah",
+      "choices": [
+        { "text": "[Lanjutkan rekaman]", "next": "c6_03_continue" },
+        { "text": "[Hentikan rekaman]", "next": "c6_03_stop" }
+      ]
+    },
+    "c6_02_exit": {
+      "speaker": "Unknown", "text": "Kamu mencari pintu keluar. Semua tertutup. Satu-satunya jalan... ke bawah. Ke bunker.", "mood": "tense",
+      "timer": 8000, "readTime": 3000, "location": "Mercusuar",
+      "choices": [
+        { "text": "Turun ke bunker.", "next": "c6_04" },
+        { "text": "[Duduk. Menyerah.]", "next": "c6_end_surrender" }
+      ]
+    },
+    "c6_03_continue": {
+      "speaker": "Dr. Harlan", "text": "Subjek pertama yang berhasil ditiru adalah asisten saya. Kami menamakannya... LUNA. Kode proyek Luna. Dia bukan orang. Dia sinyal.", "mood": "panic",
+      "timer": 14000, "readTime": 6000, "location": "Mercusuar Lantai Bawah", "entityEffect": true,
+      "choices": [
+        { "text": "Luna... adalah entitas sejak awal?!", "next": "c6_04" },
+        { "text": "[Hancurkan rekaman]", "next": "c6_end_denial" }
+      ]
+    },
+    "c6_03_stop": {
+      "speaker": "Entity", "text": "Kenapa berhenti? Takut pada kebenaran? Kamu seharusnya sudah tahu. Sejak awal, yang membimbingmu adalah aku.", "mood": "corrupted",
+      "timer": 8000, "readTime": 4000, "location": "Mercusuar", "entityEffect": true,
+      "choices": [
+        { "text": "...lanjutkan rekaman.", "next": "c6_03_continue" },
+        { "text": "DIAM.", "next": "c6_04" }
+      ]
+    },
+    "c6_04": {
+      "speaker": "Unknown", "text": "Kamu turun ke bunker. Di ruang utama, ada konsol kontrol besar. Layarnya masih menyala. Tulisan berkedip: 'PROTOCOL RESET AVAILABLE'.", "mood": "tense",
+      "timer": 12000, "readTime": 5000, "location": "Bunker Ruang Kontrol",
+      "choices": [
+        { "text": "Jalankan Protocol Reset.", "next": "c6_05_reset" },
+        { "text": "Telusuri file di konsol.", "next": "c6_05_files" }
+      ]
+    },
+    "c6_05_reset": {
+      "speaker": "Luna", "text": "Jangan! Kalau kamu reset, semuanya hilang. Termasuk aku. Kamu yakin?", "mood": "panic",
+      "timer": 10000, "readTime": 4000, "location": "Bunker Ruang Kontrol",
+      "choices": [
+        { "text": "Ya. Ini harus berakhir.", "next": "c6_next_chapter_reset" },
+        { "text": "...tidak. Aku cari cara lain.", "next": "c6_05_files" }
+      ]
+    },
+    "c6_05_files": {
+      "speaker": "Unknown", "text": "File konsol menunjukkan 7 subjek yang ditiru entitas selama 40 tahun terakhir. Luna adalah yang pertama. Kamu... akan menjadi yang kedelapan.", "mood": "tense",
+      "readTime": 5000, "location": "Bunker Ruang Kontrol",
+      "autoNext": "c6_next_chapter_files", "choices": []
+    },
+    "c6_next_chapter_reset": {
+      "speaker": "System", "text": "Bab 6 selesai. Protocol Reset dipilih. Konfrontasi akhir menanti.", "mood": "calm",
+      "readTime": 4000, "location": "Bunker Ruang Kontrol",
+      "nextChapter": 7, "choices": []
+    },
+    "c6_next_chapter_files": {
+      "speaker": "System", "text": "Bab 6 selesai. Kebenaran telah terungkap. Bagaimana kamu menghadapinya?", "mood": "calm",
+      "readTime": 4000, "location": "Bunker Ruang Kontrol",
+      "nextChapter": 7, "choices": []
+    },
+    "c6_end_surrender": {
+      "speaker": "Unknown", "text": "Kamu duduk di lantai mercusuar. Tidak bergerak. Tidak bersuara. Matahari tidak pernah terbit. Kamu tidak pernah ditemukan.", "mood": "uneasy",
+      "readTime": 6000, "location": "Mercusuar",
+      "ending": true, "endingTitle": "MENYERAH", "endingDesc": "Kamu berhenti berusaha. Blackwater menelanmu perlahan.", "choices": []
+    },
+    "c6_end_denial": {
+      "speaker": "Entity", "text": "Hancurkan semua bukti. Pura-pura tidak tahu. Tapi kamu sudah mendengar. Dan yang sudah mendengar... tidak bisa berpura-pura lagi.", "mood": "corrupted",
+      "readTime": 7000, "location": "???", "entityEffect": true,
+      "ending": true, "endingTitle": "PENYANGKALAN", "endingDesc": "Kamu menolak kebenaran. Tapi kebenaran tidak peduli.", "choices": []
+    },
+    "c6_end_trapped_loop": {
+      "speaker": "Entity", "text": "Kamu mencoba keluar. Tapi setiap pintu membawamu kembali ke ruangan yang sama. Waktu berputar. Selamanya.", "mood": "corrupted",
+      "readTime": 6000, "location": "???", "entityEffect": true,
+      "ending": true, "endingTitle": "LOOP ABADI", "endingDesc": "Entitas menjebakmu dalam lingkaran waktu. Tidak ada keluar.", "choices": []
+    },
+    "c6_end_consumed": {
+      "speaker": "Entity", "text": "Terlalu banyak yang kamu ketahui. Terlalu berbahaya untuk dibiarkan pergi. Selamat tidur.", "mood": "corrupted",
+      "readTime": 6000, "location": "Bunker", "entityEffect": true,
+      "ending": true, "endingTitle": "TERLALU BANYAK TAHU", "endingDesc": "Pengetahuanmu menjadi ancaman. Entitas menghapusmu.", "choices": []
+    }
+  }
+}

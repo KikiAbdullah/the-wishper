@@ -1,0 +1,251 @@
+/* ===================================================
+   mobile.css — Gaya Khusus Layar Mobile (Controller)
+   Choice bubbles, timer bar, status text, join screen
+   =================================================== */
+
+/* --- JOIN SCREEN --- */
+.join-screen-inner {
+    text-align: center;
+    font-family: var(--font-horror);
+}
+
+.join-screen-inner h3 {
+    font-size: 1.5rem;
+    letter-spacing: 4px;
+    color: var(--color-text-dim);
+}
+
+.join-screen-inner p {
+    color: var(--color-text-dim);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+.pin-input {
+    background: transparent;
+    color: #fff;
+    border: 1px solid var(--color-border);
+    padding: 12px;
+    font-family: var(--font-horror);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2rem;
+    letter-spacing: 10px;
+    margin-top: 10px;
+    width: 180px;
+    transition: border-color 0.3s;
+}
+
+.pin-input:focus {
+    border-color: var(--color-accent-cyan);
+}
+
+.join-btn {
+    background: transparent;
+    color: #fff;
+    padding: 12px 25px;
+    border: 1px solid var(--color-border);
+    font-family: var(--font-horror);
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    margin-top: 15px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.join-btn:active {
+    background: #fff;
+    color: #000;
+}
+
+/* --- CONTROLLER SCREEN (Area Permainan) --- */
+.controller-screen {
+    width: 100%;
+    max-width: 420px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Status teks utama */
+#statusText {
+    font-family: var(--font-horror);
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-bottom: 15px;
+    transition: color 0.3s;
+}
+
+/* --- PILIHAN DIALOG (Choice Bubbles) --- */
+.choice-bubble {
+    background: rgba(20, 20, 30, 0.85);
+    border: 1px solid rgba(100, 100, 120, 0.4);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    text-align: center;
+    font-family: var(--font-horror);
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    color: var(--color-text);
+    width: 100%;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efek cahaya subtle pada hover */
+.choice-bubble::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(100,150,200,0.08) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.choice-bubble:hover::before,
+.choice-bubble:active::before {
+    opacity: 1;
+}
+
+.choice-bubble:active {
+    transform: scale(0.97);
+    border-color: var(--color-accent-cyan);
+    background: rgba(30, 40, 60, 0.9);
+}
+
+/* --- TIMER BAR (Garis Batas Waktu) --- */
+.timer-ring {
+    height: 5px;
+    background: rgba(80, 80, 80, 0.3);
+    width: 100%;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    transition: width 0.1s linear, background 0.4s;
+    position: relative;
+}
+
+.timer-ring.running {
+    background: rgba(200, 200, 200, 0.7);
+    box-shadow: 0 0 8px rgba(200, 200, 200, 0.2);
+}
+
+/* Ketika waktu hampir habis: merah menyala */
+.timer-ring.red {
+    background: var(--color-accent-red);
+    box-shadow: 0 0 15px rgba(255, 50, 50, 0.5);
+    animation: timer-pulse 0.5s infinite;
+}
+
+@keyframes timer-pulse {
+    0%, 100% { box-shadow: 0 0 10px rgba(255,50,50,0.4); }
+    50% { box-shadow: 0 0 20px rgba(255,50,50,0.8); }
+}
+
+/* --- STATUS MENUNGGU --- */
+.waiting-text {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--color-text-dim);
+    letter-spacing: 2px;
+    text-align: center;
+    animation: pulse-text 2s ease-in-out infinite;
+}
+
+@keyframes pulse-text {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+/* --- TAP OVERLAY (Layar Awal) --- */
+.tap-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.tap-overlay h2 {
+    font-family: var(--font-horror);
+    font-size: 2rem;
+    letter-spacing: 8px;
+    color: var(--color-text);
+    animation: pulse-text 2.5s ease-in-out infinite;
+}
+
+.tap-overlay p {
+    font-size: 0.75rem;
+    color: var(--color-text-dim);
+    margin-top: 15px;
+    letter-spacing: 2px;
+}
+
+/* --- MOOD BACKGROUND OVERLAY (#7: Suasana HP berubah) --- */
+.mood-bg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    transition: background 1.5s ease, opacity 1.5s ease;
+    opacity: 0;
+}
+.mood-bg-calm { opacity: 0; }
+.mood-bg-uneasy {
+    opacity: 1;
+    background: radial-gradient(ellipse at center, rgba(60,60,90,0.15) 0%, transparent 70%);
+}
+.mood-bg-tense {
+    opacity: 1;
+    background: radial-gradient(ellipse at center, rgba(120,100,30,0.12) 0%, transparent 70%);
+}
+.mood-bg-panic {
+    opacity: 1;
+    background: radial-gradient(ellipse at center, rgba(150,20,20,0.2) 0%, transparent 70%);
+    animation: panic-pulse-bg 1.5s ease-in-out infinite;
+}
+.mood-bg-corrupted {
+    opacity: 1;
+    background: radial-gradient(ellipse at center, rgba(0,120,80,0.15) 0%, transparent 70%);
+}
+
+@keyframes panic-pulse-bg {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Body mood classes: ubah warna border dan teks secara global */
+body.mood-tense #statusText { color: #aa8833 !important; }
+body.mood-panic #statusText { color: #ff4444 !important; }
+body.mood-corrupted #statusText { color: #33cc88 !important; }
+body.mood-panic .controller-screen { animation: shake-subtle 0.3s infinite; }
+
+@keyframes shake-subtle {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+/* Choice bubble modifier per mood */
+.choice-bubble.mood-panic {
+    border-color: rgba(255, 60, 60, 0.4);
+    animation: pulse-red 2s infinite;
+}
+.choice-bubble.mood-corrupted {
+    border-color: rgba(50, 200, 120, 0.4);
+    color: #88ddaa;
+}
+
+@keyframes pulse-red {
+    0%, 100% { border-color: rgba(255, 60, 60, 0.3); }
+    50% { border-color: rgba(255, 60, 60, 0.7); }
+}

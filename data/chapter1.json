@@ -1,0 +1,101 @@
+{
+  "chapterTitle": "BAB 1 — KEDATANGAN",
+  "startScene": "c1_01",
+  "scenes": {
+    "c1_01": {
+      "speaker": "Unknown", "text": "...kamu bisa mendengarku?", "mood": "uneasy",
+      "timer": 10000, "readTime": 3000, "location": "Pantai Blackwater",
+      "choices": [
+        { "text": "Siapa di sana?", "next": "c1_02a" },
+        { "text": "Aku tidak mendengar apa-apa.", "next": "c1_02b" },
+        { "text": "[Diam]", "next": "c1_02c" }
+      ]
+    },
+    "c1_02a": {
+      "speaker": "Unknown", "text": "Bagus... kamu salah satu dari sedikit yang bisa menangkap frekuensi ini.", "mood": "uneasy",
+      "timer": 10000, "readTime": 3000, "location": "Pantai Blackwater",
+      "choices": [
+        { "text": "Frekuensi apa?", "next": "c1_03" },
+        { "text": "Ini pasti lelucon.", "next": "c1_03_doubt" }
+      ]
+    },
+    "c1_02b": {
+      "speaker": "Entity", "text": "Bohong. Aku tahu kamu mendengarnya. Detak itu... sudah dari tadi.", "mood": "tense",
+      "timer": 8000, "readTime": 3000, "location": "Pantai Blackwater", "entityEffect": true,
+      "choices": [
+        { "text": "Hentikan! Siapa kamu?!", "next": "c1_03" },
+        { "text": "[Diam]", "next": "c1_end_silent" }
+      ]
+    },
+    "c1_02c": {
+      "speaker": "Unknown", "text": "...diam. Kamu suka bersembunyi ya? Aku sabar.", "mood": "tense",
+      "timer": 8000, "readTime": 3000, "location": "Pantai Blackwater",
+      "choices": [
+        { "text": "Tolong tinggalkan aku.", "next": "c1_03" },
+        { "text": "[Pergi dari sini]", "next": "c1_end_flee" }
+      ]
+    },
+    "c1_03": {
+      "speaker": "Luna", "text": "Hei! Akhirnya kamu menjawab. Ini Luna. Koneksiku hampir putus... aku butuh bantuanmu.", "mood": "calm",
+      "timer": 12000, "readTime": 4000, "location": "Pantai Blackwater",
+      "choices": [
+        { "text": "Luna? Kamu di mana?", "next": "c1_04" },
+        { "text": "Kenapa aku harus percaya?", "next": "c1_04_distrust" }
+      ]
+    },
+    "c1_03_doubt": {
+      "speaker": "Unknown", "text": "Lelucon? Kamu akan segera berharap ini hanya lelucon.", "mood": "tense",
+      "timer": 8000, "readTime": 3000, "location": "Pantai Blackwater",
+      "choices": [
+        { "text": "Apa maksudmu?", "next": "c1_04" },
+        { "text": "[Matikan radio]", "next": "c1_end_ignore" }
+      ]
+    },
+    "c1_04": {
+      "speaker": "Luna", "text": "Aku terjebak dekat mercusuar tua. Radio ini satu-satunya harapanku. Temukan aku sebelum frekuensinya hilang.", "mood": "calm",
+      "timer": 12000, "readTime": 4000, "location": "Pantai Blackwater",
+      "choices": [
+        { "text": "Aku akan ke sana. Tunggu.", "next": "c1_05" },
+        { "text": "Bagaimana caranya?", "next": "c1_05" }
+      ]
+    },
+    "c1_04_distrust": {
+      "speaker": "Luna", "text": "Kamu benar untuk tidak percaya. Tapi kalau kamu tidak datang, aku akan mati di sini.", "mood": "tense",
+      "timer": 10000, "readTime": 4000, "location": "Pantai Blackwater",
+      "choices": [
+        { "text": "...baiklah.", "next": "c1_05" },
+        { "text": "Itu bukan urusanku.", "next": "c1_end_abandon" }
+      ]
+    },
+    "c1_05": {
+      "speaker": "Unknown", "text": "Kamu melangkah ke jalan setapak. Angin bertiup dingin. Di kejauhan, cahaya mercusuar berkedip redup.", "mood": "uneasy",
+      "readTime": 5000, "location": "Jalan Setapak",
+      "autoNext": "c1_next_chapter", "choices": []
+    },
+    "c1_next_chapter": {
+      "speaker": "System", "text": "Bab 1 selesai. Perjalananmu baru dimulai...", "mood": "calm",
+      "readTime": 4000, "location": "Jalan Setapak",
+      "nextChapter": 2, "choices": []
+    },
+    "c1_end_silent": {
+      "speaker": "Entity", "text": "Diam. Selalu diam. Kamu pikir aku akan pergi? Aku ada di sini jauh sebelum kamu datang. Dan aku akan tetap di sini.", "mood": "corrupted",
+      "readTime": 6000, "location": "???", "entityEffect": true,
+      "ending": true, "endingTitle": "TERKUBUR DALAM SENYAP", "endingDesc": "Kamu memilih diam. Dan kesunyian menelanmu.", "choices": []
+    },
+    "c1_end_flee": {
+      "speaker": "Unknown", "text": "Kamu berlari dari pantai. Tapi suara itu mengikuti. Ke mana pun kamu pergi, bisikan itu selalu satu langkah di belakangmu.", "mood": "uneasy",
+      "readTime": 6000, "location": "Pantai Blackwater",
+      "ending": true, "endingTitle": "YANG MELARIKAN DIRI", "endingDesc": "Kamu lari. Tapi Blackwater tidak pernah melepaskanmu.", "choices": []
+    },
+    "c1_end_ignore": {
+      "speaker": "Unknown", "text": "Radio mati. Kamu berdiri sendirian di kegelapan. Lalu kamu dengar bisikan itu... tepat di belakang telingamu.", "mood": "panic",
+      "readTime": 6000, "location": "Pantai Blackwater", "entityEffect": true,
+      "ending": true, "endingTitle": "YANG MENGABAIKAN", "endingDesc": "Kamu mematikan radio. Tapi suara itu tidak butuh radio.", "choices": []
+    },
+    "c1_end_abandon": {
+      "speaker": "Unknown", "text": "Kamu meninggalkan Luna. Malam sangat panjang. Dari kejauhan, bisikan itu memanggil namamu.", "mood": "uneasy",
+      "readTime": 6000, "location": "Pantai Blackwater",
+      "ending": true, "endingTitle": "YANG DITINGGALKAN", "endingDesc": "Kamu pergi. Tapi suara itu tidak pernah berhenti.", "choices": []
+    }
+  }
+}

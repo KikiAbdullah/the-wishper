@@ -1,0 +1,86 @@
+{
+  "chapterTitle": "BAB 5 — BUNKER BAWAH TANAH",
+  "startScene": "c5_01",
+  "scenes": {
+    "c5_01": {
+      "speaker": "Luna", "text": "Kamu kembali dengan kodenya. Masukkan ke pemancar. Tapi hati-hati... entitas pasti sudah tahu.", "mood": "tense",
+      "timer": 10000, "readTime": 4000, "location": "Puncak Mercusuar",
+      "choices": [
+        { "text": "[Masukkan kode: 190887]", "next": "c5_02" },
+        { "text": "Tunggu. Aku perlu siap dulu.", "next": "c5_02_wait" }
+      ]
+    },
+    "c5_02": {
+      "speaker": "Unknown", "text": "Layar pemancar menyala. Deretan frekuensi muncul. Satu frekuensi berkedip merah: 96.6.", "mood": "tense",
+      "timer": 10000, "readTime": 4000, "location": "Pemancar Radio",
+      "choices": [
+        { "text": "Matikan frekuensi 96.6.", "next": "c5_03_shutdown" },
+        { "text": "Ubah frekuensi ke 87.4.", "next": "c5_03_redirect" }
+      ]
+    },
+    "c5_02_wait": {
+      "speaker": "Entity", "text": "Menunggu? Kamu pikir waktu berpihak padamu? Setiap detik yang kamu buang, aku semakin kuat.", "mood": "panic",
+      "timer": 7000, "readTime": 3000, "location": "Puncak Mercusuar", "entityEffect": true,
+      "choices": [
+        { "text": "[Masukkan kode sekarang!]", "next": "c5_02" },
+        { "text": "[Ragu... diam]", "next": "c5_end_hesitate" }
+      ]
+    },
+    "c5_03_shutdown": {
+      "speaker": "Entity", "text": "TIDAK! JANGAN MATIKAN! Kamu tidak tahu apa yang kamu lakukan!", "mood": "panic",
+      "timer": 8000, "readTime": 3000, "location": "Pemancar Radio", "entityEffect": true,
+      "choices": [
+        { "text": "[Tekan tombol SHUTDOWN]", "next": "c5_04_shutdown" },
+        { "text": "[Berhenti. Dengarkan.]", "next": "c5_end_listened" }
+      ]
+    },
+    "c5_03_redirect": {
+      "speaker": "Luna", "text": "87.4... itu frekuensi netral. Kalau kamu redirect sinyal ke sana, entitas tidak bisa menggunakannya. Tapi aku juga akan kehilangan koneksi.", "mood": "tense",
+      "timer": 12000, "readTime": 5000, "location": "Pemancar Radio",
+      "choices": [
+        { "text": "Tidak apa. Yang penting entitas berhenti.", "next": "c5_04_redirect" },
+        { "text": "Aku tidak mau kehilanganmu, Luna.", "next": "c5_end_attached" }
+      ]
+    },
+    "c5_04_shutdown": {
+      "speaker": "Unknown", "text": "Kamu menekan tombol. Layar berkedip. Seluruh mercusuar bergetar. Lalu... keheningan total.", "mood": "uneasy",
+      "readTime": 5000, "location": "Pemancar Radio",
+      "autoNext": "c5_next_chapter", "choices": []
+    },
+    "c5_04_redirect": {
+      "speaker": "Unknown", "text": "Frekuensi bergeser. 96.6 menghilang. Radio hanya mengeluarkan noise putih. Luna diam.", "mood": "uneasy",
+      "readTime": 5000, "location": "Pemancar Radio",
+      "autoNext": "c5_next_chapter", "choices": []
+    },
+    "c5_next_chapter": {
+      "speaker": "System", "text": "Bab 5 selesai. Pemancar telah diubah. Tapi kosekuensinya belum terlihat...", "mood": "calm",
+      "readTime": 4000, "location": "Mercusuar",
+      "nextChapter": 6, "choices": []
+    },
+    "c5_end_hesitate": {
+      "speaker": "Entity", "text": "Terima kasih sudah menunggu. Aku cukup kuat sekarang. Pemancar ini milikku. Kamu... juga.", "mood": "corrupted",
+      "readTime": 7000, "location": "???", "entityEffect": true,
+      "ending": true, "endingTitle": "TERLALU LAMBAT", "endingDesc": "Keraguanmu memberi entitas waktu untuk mengambil alih pemancar.", "choices": []
+    },
+    "c5_end_listened": {
+      "speaker": "Entity", "text": "Bagus. Dengarkan aku. Jangan matikan. Kita bisa hidup berdampingan. Aku hanya butuh... tubuh.", "mood": "corrupted",
+      "readTime": 7000, "location": "Pemancar Radio", "entityEffect": true,
+      "ending": true, "endingTitle": "SUARA YANG MENIPU", "endingDesc": "Kamu mendengarkan entitas. Sekarang dia punya kendali atas radiomu... dan pikiranmu.", "choices": []
+    },
+    "c5_end_attached": {
+      "speaker": "Luna", "text": "Kamu memilihku... terima kasih. Tapi... aku bukan Luna. Aku tidak pernah Luna. Maafkan aku.", "mood": "corrupted",
+      "readTime": 7000, "location": "???", "entityEffect": true,
+      "ending": true, "endingTitle": "CINTA YANG PALSU", "endingDesc": "Kelekatan emosionalmu dimanfaatkan. Yang kamu cintai hanyalah suara.", "choices": []
+    },
+    "c5_end_overload": {
+      "speaker": "Unknown", "text": "Pemancar kelebihan beban. Ledakan frekuensi. Semuanya putih. Lalu gelap. Kamu tidak merasakan apa-apa lagi.", "mood": "panic",
+      "readTime": 6000, "location": "Pemancar Radio",
+      "ending": true, "endingTitle": "LEDAKAN FREKUENSI", "endingDesc": "Pemancar meledak. Kamu dan entitas sama-sama musnah.", "choices": []
+    },
+    "c5_end_sacrifice": {
+      "speaker": "Luna", "text": "Kamu mengorbankan koneksi. Radio mati. Kamu sendirian di puncak mercusuar. Tapi entitas... berhenti.", "mood": "calm",
+      "readTime": 6000, "location": "Puncak Mercusuar",
+      "ending": true, "endingTitle": "PENGORBANAN SUNYI", "endingDesc": "Kamu kehilangan segalanya untuk menghentikan entitas. Sendirian... tapi selamat.", "choices": []
+    }
+  }
+}

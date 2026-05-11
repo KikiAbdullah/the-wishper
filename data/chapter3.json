@@ -1,0 +1,101 @@
+{
+  "chapterTitle": "BAB 3 — HUTAN GELAP",
+  "startScene": "c3_01",
+  "scenes": {
+    "c3_01": {
+      "speaker": "Unknown", "text": "Mercusuar menjulang dari kabut. Pintunya terbuka sedikit. Cahaya redup berkedip dari dalam.", "mood": "uneasy",
+      "timer": 10000, "readTime": 4000, "location": "Depan Mercusuar",
+      "choices": [
+        { "text": "Masuk perlahan.", "next": "c3_02" },
+        { "text": "Ketuk dulu.", "next": "c3_02_knock" },
+        { "text": "[Mengintip dari jendela]", "next": "c3_02_peek" }
+      ]
+    },
+    "c3_02": {
+      "speaker": "Luna", "text": "Kamu datang... akhirnya. Masuklah, cepat. Sebelum mereka tahu kamu di sini.", "mood": "tense",
+      "timer": 10000, "readTime": 3000, "location": "Mercusuar Lantai 1",
+      "choices": [
+        { "text": "Mereka? Siapa mereka?", "next": "c3_03" },
+        { "text": "Luna, apa yang terjadi di pulau ini?", "next": "c3_03_explain" }
+      ]
+    },
+    "c3_02_knock": {
+      "speaker": "Unknown", "text": "Kamu mengetuk. Tidak ada jawaban. Tapi pintu bergerak sendiri... terbuka lebar.", "mood": "tense",
+      "timer": 8000, "readTime": 3000, "location": "Mercusuar Lantai 1",
+      "choices": [
+        { "text": "Masuk.", "next": "c3_03" },
+        { "text": "[Mundur]", "next": "c3_end_coward" }
+      ]
+    },
+    "c3_02_peek": {
+      "speaker": "Unknown", "text": "Dari jendela kamu melihat seseorang duduk. Punggungnya menghadapmu. Rambutnya menutupi wajah. Dia... tidak bergerak.", "mood": "panic",
+      "timer": 8000, "readTime": 4000, "location": "Mercusuar Lantai 1",
+      "choices": [
+        { "text": "Masuk dan hampiri.", "next": "c3_03_figure" },
+        { "text": "[Lari]", "next": "c3_end_coward" }
+      ]
+    },
+    "c3_03": {
+      "speaker": "Luna", "text": "Pulau ini... punya sejarah. Tahun 1987, ada eksperimen radio di bunker bawah tanah. Mereka mencoba menghubungi sesuatu. Dan sesuatu itu... menjawab.", "mood": "tense",
+      "timer": 14000, "readTime": 5000, "location": "Mercusuar Lantai 1",
+      "choices": [
+        { "text": "Eksperimen apa?", "next": "c3_04" },
+        { "text": "Ini tidak masuk akal.", "next": "c3_04" }
+      ]
+    },
+    "c3_03_explain": {
+      "speaker": "Luna", "text": "Entitas itu... dia hidup di frekuensi radio. Dia bisa meniru suara. Dia bisa memanipulasi apa yang kamu lihat di layar.", "mood": "tense",
+      "timer": 12000, "readTime": 5000, "location": "Mercusuar Lantai 1",
+      "choices": [
+        { "text": "Bagaimana cara melawannya?", "next": "c3_04" },
+        { "text": "Dari mana kamu tahu semua ini?", "next": "c3_end_trap" }
+      ]
+    },
+    "c3_03_figure": {
+      "speaker": "Unknown", "text": "Kamu mendekatinya. Dia berbalik. Wajahnya... kosong. Tidak ada mata. Tidak ada mulut. Hanya kulit.", "mood": "panic",
+      "timer": 6000, "readTime": 4000, "location": "Mercusuar Lantai 1", "entityEffect": true,
+      "choices": [
+        { "text": "LARI!", "next": "c3_04" },
+        { "text": "[Membeku]", "next": "c3_end_frozen" }
+      ]
+    },
+    "c3_04": {
+      "speaker": "Luna", "text": "Ada satu cara. Di lantai atas mercusuar, ada pemancar radio tua. Kalau kita bisa mengubah frekuensinya... mungkin kita bisa memutus koneksi entitas itu.", "mood": "calm",
+      "timer": 14000, "readTime": 5000, "location": "Mercusuar Lantai 1",
+      "choices": [
+        { "text": "Ayo ke atas.", "next": "c3_05" },
+        { "text": "Bagaimana kalau itu jebakan?", "next": "c3_05" }
+      ]
+    },
+    "c3_05": {
+      "speaker": "Unknown", "text": "Kamu menaiki tangga spiral. Setiap langkah berdecit. Di dinding, ada tulisan darah kering: 'JANGAN DENGARKAN'.", "mood": "tense",
+      "readTime": 5000, "location": "Tangga Mercusuar",
+      "autoNext": "c3_next_chapter", "choices": []
+    },
+    "c3_next_chapter": {
+      "speaker": "System", "text": "Bab 3 selesai. Puncak mercusuar menanti...", "mood": "calm",
+      "readTime": 4000, "location": "Tangga Mercusuar",
+      "nextChapter": 4, "choices": []
+    },
+    "c3_end_coward": {
+      "speaker": "Unknown", "text": "Kamu mundur. Kabut menelanmu. Kamu berjalan tanpa arah... sampai matahari yang tidak pernah terbit.", "mood": "uneasy",
+      "readTime": 6000, "location": "Kabut",
+      "ending": true, "endingTitle": "TERSESAT DALAM KABUT", "endingDesc": "Ketakutanmu membuatmu tersesat selamanya di Blackwater.", "choices": []
+    },
+    "c3_end_trap": {
+      "speaker": "Entity", "text": "Pertanyaan yang bagus. Dari mana Luna tahu? Mungkin... karena Luna sudah tidak ada. Yang berbicara ini bukan Luna.", "mood": "corrupted",
+      "readTime": 6000, "location": "???", "entityEffect": true,
+      "ending": true, "endingTitle": "TIPUAN SEMPURNA", "endingDesc": "Yang kamu ikuti selama ini bukan Luna. Entitas meniru suaranya.", "choices": []
+    },
+    "c3_end_frozen": {
+      "speaker": "Entity", "text": "Kamu tidak bisa bergerak. Kamu tidak bisa berteriak. Kamu hanya bisa mendengar. Dan bisikan itu... tidak akan pernah berhenti.", "mood": "corrupted",
+      "readTime": 6000, "location": "Mercusuar Lantai 1", "entityEffect": true,
+      "ending": true, "endingTitle": "MEMBATU", "endingDesc": "Ketakutan membekukanmu. Kamu menjadi bagian dari mercusuar.", "choices": []
+    },
+    "c3_end_too_slow": {
+      "speaker": "Entity", "text": "Terlalu lambat. Entitas sudah tahu kamu di sini. Dan pintu... baru saja tertutup.", "mood": "panic",
+      "readTime": 6000, "location": "Mercusuar Lantai 1", "entityEffect": true,
+      "ending": true, "endingTitle": "TERKUNCI DI DALAM", "endingDesc": "Kamu terlalu lambat. Mercusuar menjadi penjaramu.", "choices": []
+    }
+  }
+}

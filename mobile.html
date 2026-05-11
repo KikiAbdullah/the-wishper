@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Controller | The Whispers</title>
+    <meta name="description" content="Mobile Controller — The Whispers Multiplayer Horror">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/effects.css">
+    <!-- Pustaka QR Scanner -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;touch-action:none;">
+
+    <!-- Overlay Suasana (#7: berubah warna sesuai mood TV) -->
+    <div id="moodOverlay" class="mood-bg-overlay"></div>
+
+    <!-- Overlay Klik Pertama (Bypass Audio & Haptic) -->
+    <div id="tapToStartOverlay" class="tap-overlay">
+        <h2>TAP TO READY</h2>
+        <p>Membutuhkan Akses Audio & Getaran</p>
+    </div>
+
+    <!-- LAYAR JOIN (Masukkan PIN / Scan QR) -->
+    <div id="joinScreen" style="display:none;" class="join-screen-inner">
+        <h3>SCAN QR ATAU MASUKKAN PIN</h3>
+        <div id="reader" style="width:100%;max-width:300px;margin:15px auto;"></div>
+        <p>ATAU KETIK PIN</p>
+        <input type="text" id="pinInput" class="pin-input" maxlength="4" placeholder="----" inputmode="numeric">
+        <br>
+        <button class="join-btn" id="joinRoomBtn">GABUNG</button>
+    </div>
+
+    <!-- LAYAR CONTROLLER (Area Pilihan Dalam Game) -->
+    <div id="controllerScreen" style="display:none;" class="controller-screen">
+        <div id="timerBar" class="timer-ring"></div>
+        <h3 id="statusText">MENUNGGU ADEGAN...</h3>
+        <div id="choicesContainer"></div>
+    </div>
+
+    <script type="module" src="js/mobile.js"></script>
+</body>
+</html>

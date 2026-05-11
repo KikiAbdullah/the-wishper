@@ -1,0 +1,57 @@
+/* ===================================================
+   main.css — Gaya Global The Whispers
+   Variabel warna, reset, dan tipografi horror
+   =================================================== */
+
+/* Import font horror monospace dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
+
+/* Variabel Warna Global (Palet Horror sesuai PRD) */
+:root {
+    --color-bg: #050505;
+    --color-bg-dark: #000000;
+    --color-text: #c8c8c8;
+    --color-text-dim: #666666;
+    --color-accent-red: #ff3333;
+    --color-accent-green: #33ff66;
+    --color-accent-cyan: #33cccc;
+    --color-deep-blue: #0a0f2e;
+    --color-purple: #2a1a3a;
+    --color-border: #333333;
+    --color-border-hover: #888888;
+    --font-horror: 'VT323', monospace;
+    --font-mono: 'Share Tech Mono', monospace;
+}
+
+/* Reset Dasar */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Hilangkan garis biru pada elemen yang difokuskan */
+*:focus {
+    outline: none;
+}
+
+/* Seleksi teks berwarna horror */
+::selection {
+    background: var(--color-accent-red);
+    color: #000;
+}
+
+/* Scrollbar gelap (untuk browser berbasis Chromium) */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }

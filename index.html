@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Whispers</title>
+    <meta name="description" content="Multiplayer Narrative Horror Experience — Dual Screen Browser Game">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/effects.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+        }
+        /* Kontainer utama landing */
+        .landing-container {
+            text-align: center;
+            z-index: 5;
+            position: relative;
+        }
+        /* Judul utama */
+        .landing-title {
+            font-family: var(--font-horror);
+            font-size: 4.5rem;
+            letter-spacing: 15px;
+            color: #ccc;
+            text-shadow: 0 0 30px rgba(150,150,180,0.15);
+            margin-bottom: 8px;
+            animation: subtle-flicker 5s infinite;
+        }
+        .landing-subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            color: var(--color-text-dim);
+            margin-bottom: 50px;
+        }
+        /* Tombol peran */
+        .role-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 320px;
+            margin: 0 auto;
+        }
+        .role-btn {
+            background: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            padding: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-family: var(--font-horror);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .role-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(100,100,150,0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .role-btn:hover {
+            border-color: var(--color-text);
+            text-shadow: 0 0 10px rgba(200,200,200,0.3);
+        }
+        .role-btn:hover::before { opacity: 1; }
+        /* Fog Latar */
+        .landing-fog {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: 
+                radial-gradient(ellipse at 30% 70%, rgba(80,80,120,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 20%, rgba(60,60,100,0.1) 0%, transparent 50%);
+            animation: fog-drift 20s ease-in-out infinite alternate;
+        }
+        @keyframes fog-drift {
+            0% { transform: translateX(-20px); opacity: 0.1; }
+            100% { transform: translateX(20px); opacity: 0.2; }
+        }
+        /* Vignette */
+        .landing-vignette {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.9) 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- Lapisan Atmosfer -->
+    <div class="landing-fog"></div>
+    <div class="landing-vignette"></div>
+    
+    <!-- Konten Utama -->
+    <div class="landing-container">
+        <h1 class="landing-title">THE WHISPERS</h1>
+        <p class="landing-subtitle">CAN YOU HEAR THEM?</p>
+        <div class="role-selection">
+            <button class="role-btn" onclick="window.location.href='tv.html'">▶ HOST GAME (TV / PC)</button>
+            <button class="role-btn" onclick="window.location.href='mobile.html'">◉ JOIN GAME (MOBILE)</button>
+        </div>
+    </div>
+</body>
+</html>

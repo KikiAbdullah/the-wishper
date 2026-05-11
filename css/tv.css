@@ -1,0 +1,224 @@
+/* ===================================================
+   tv.css — Gaya Khusus Layar TV (Host / Cinematic)
+   Layout subtitle, HUD, vignette, fog, film grain
+   =================================================== */
+
+/* --- LOBBY SCREEN --- */
+.lobby-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: var(--font-horror);
+    position: relative;
+    z-index: 2;
+}
+
+.lobby-screen h2 {
+    font-size: 2rem;
+    letter-spacing: 5px;
+    color: var(--color-text-dim);
+    margin-top: 20px;
+}
+
+.lobby-screen p {
+    color: var(--color-text-dim);
+    font-size: 1rem;
+    letter-spacing: 3px;
+    margin-top: 10px;
+}
+
+#startGameBtn {
+    background: transparent;
+    border: 1px solid var(--color-accent-green);
+    color: var(--color-accent-green);
+    padding: 12px 30px;
+    font-family: var(--font-horror);
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-top: 25px;
+}
+
+#startGameBtn:hover {
+    background: var(--color-accent-green);
+    color: #000;
+}
+
+/* --- GAME SCREEN (Area Permainan Utama) --- */
+.game-screen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Teks persis di tengah layar */
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- HUD (Heads-Up Display) --- */
+.tv-hud {
+    position: fixed;
+    z-index: 10;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--color-text-dim);
+    opacity: 0.6;
+}
+
+/* Kiri Atas: Lokasi & Waktu */
+.hud-location {
+    top: 20px;
+    left: 25px;
+}
+
+/* Kanan Bawah: Indikator sinyal radio */
+.hud-radio {
+    bottom: 20px;
+    right: 25px;
+}
+
+.hud-radio .signal-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent-green);
+    margin-left: 6px;
+    animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* --- SUBTITLE TEXT (Teks Dialog Cinematic) --- */
+.subtitle-text {
+    font-size: 2.8rem;
+    font-family: var(--font-horror);
+    letter-spacing: 2px;
+    max-width: 75%;
+    text-align: center;
+    line-height: 1.6;
+    transition: color 0.5s, text-shadow 0.5s;
+    position: relative;
+    z-index: 5;
+}
+
+/* Nama karakter yang berbicara */
+.speaker-name {
+    font-size: 1.2rem;
+    color: var(--color-text-dim);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 15px;
+    font-family: var(--font-mono);
+}
+
+/* --- ATMOSPHERIC OVERLAYS --- */
+
+/* Film Grain (Butiran Film Analog) */
+.grain-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    animation: grain-shift 0.5s steps(10) infinite;
+}
+
+@keyframes grain-shift {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    30% { transform: translate(3%, -15%); }
+    50% { transform: translate(12%, 9%); }
+    70% { transform: translate(9%, 4%); }
+    90% { transform: translate(-1%, 7%); }
+}
+
+/* Vignette (Pinggiran Gelap) */
+.vignette-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.8) 100%);
+}
+
+/* Fog / Kabut Bergerak */
+.fog-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.15;
+    background: 
+        radial-gradient(ellipse at 20% 50%, rgba(100,100,140,0.3) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 30%, rgba(60,80,100,0.2) 0%, transparent 50%);
+    animation: fog-drift 15s ease-in-out infinite alternate;
+}
+
+@keyframes fog-drift {
+    0% { transform: translateX(-30px) scale(1); opacity: 0.12; }
+    50% { transform: translateX(20px) scale(1.05); opacity: 0.2; }
+    100% { transform: translateX(-10px) scale(1); opacity: 0.15; }
+}
+
+/* CRT Scanlines (Garis Layar TV Tua) */
+.scanlines-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,0.15) 0px,
+        rgba(0,0,0,0.15) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    opacity: 0.3;
+}
+
+/* --- LAYAR ENDING / TAMAT --- */
+.end-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.95);
+    animation: fade-in-slow 2s ease forwards;
+}
+
+.end-screen h1 {
+    font-family: var(--font-horror);
+    font-size: 5rem;
+    letter-spacing: 15px;
+    color: var(--color-accent-red);
+    text-shadow: 0 0 30px rgba(255,0,0,0.5);
+}
+
+.end-screen p {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--color-text-dim);
+    margin-top: 20px;
+    letter-spacing: 3px;
+}
+
+@keyframes fade-in-slow {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

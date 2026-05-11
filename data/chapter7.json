@@ -1,0 +1,79 @@
+{
+  "chapterTitle": "BAB 7 — KONFRONTASI AKHIR",
+  "startScene": "c7_01",
+  "scenes": {
+    "c7_01": {
+      "speaker": "Entity", "text": "Kamu sampai sejauh ini. Mengagumkan. Tapi ini akhirnya. Kamu harus memilih.", "mood": "corrupted",
+      "timer": 12000, "readTime": 5000, "location": "Ruang Inti Bunker", "entityEffect": true,
+      "choices": [
+        { "text": "Aku siap.", "next": "c7_02" },
+        { "text": "Aku tidak takut padamu.", "next": "c7_02_brave" },
+        { "text": "[Diam]", "next": "c7_02_silent" }
+      ]
+    },
+    "c7_02": {
+      "speaker": "Entity", "text": "Tiga pilihan ada di depanmu. Satu: hancurkan semuanya, termasuk dirimu. Dua: lepaskan aku ke dunia luar. Tiga: gantikan aku. Jadi penjaga frekuensi baru.", "mood": "tense",
+      "timer": 15000, "readTime": 6000, "location": "Ruang Inti Bunker", "entityEffect": true,
+      "choices": [
+        { "text": "Hancurkan semuanya.", "next": "c7_end_destroy_all" },
+        { "text": "Lepaskan kamu.", "next": "c7_end_release" },
+        { "text": "Aku akan menggantikanmu.", "next": "c7_end_replace" }
+      ]
+    },
+    "c7_02_brave": {
+      "speaker": "Entity", "text": "Tidak takut? Kita lihat. Bagaimana kalau aku tunjukkan apa yang sebenarnya terjadi pada semua orang yang datang sebelummu?", "mood": "panic",
+      "timer": 10000, "readTime": 4000, "location": "Ruang Inti Bunker", "entityEffect": true,
+      "choices": [
+        { "text": "Tunjukkan.", "next": "c7_03_visions" },
+        { "text": "Aku tidak peduli. Akhiri ini.", "next": "c7_02" }
+      ]
+    },
+    "c7_02_silent": {
+      "speaker": "Entity", "text": "Diam lagi? Kamu tahu, kesunyian adalah bahasa favoritku. Dalam diam, aku bisa mendengar pikiranmu.", "mood": "corrupted",
+      "timer": 8000, "readTime": 4000, "location": "Ruang Inti Bunker", "entityEffect": true,
+      "choices": [
+        { "text": "Keluar dari kepalaku!", "next": "c7_02" },
+        { "text": "[Tetap diam]", "next": "c7_end_silent_forever" }
+      ]
+    },
+    "c7_03_visions": {
+      "speaker": "Unknown", "text": "Kamu melihat semuanya. Wajah-wajah yang datang ke pulau ini. 40 tahun. Semuanya dipanggil oleh suara yang sama. Semuanya mengira mereka bisa menang.", "mood": "panic",
+      "readTime": 5000, "location": "???",
+      "autoNext": "c7_04_choice", "choices": []
+    },
+    "c7_04_choice": {
+      "speaker": "Entity", "text": "Sekarang kamu tahu. Tidak ada yang menang. Hanya yang bertahan. Jadi... apa pilihanmu?", "mood": "tense",
+      "timer": 15000, "readTime": 5000, "location": "Ruang Inti Bunker", "entityEffect": true,
+      "choices": [
+        { "text": "Hancurkan konsol. Hancurkan semuanya.", "next": "c7_end_destroy_all" },
+        { "text": "Aku gantikan posisimu. Jadi penjaga.", "next": "c7_end_replace" },
+        { "text": "[Lari ke permukaan]", "next": "c7_end_escape" }
+      ]
+    },
+    "c7_end_destroy_all": {
+      "speaker": "Unknown", "text": "Kamu menghancurkan konsol. Ledakan frekuensi memenuhi bunker. Cahaya putih menyilaukan. Lalu... keheningan. Blackwater Point lenyap dari peta.", "mood": "panic",
+      "readTime": 8000, "location": "Bunker Inti",
+      "ending": true, "endingTitle": "PENGHANCURAN TOTAL", "endingDesc": "Kamu mengorbankan segalanya untuk menghancurkan entitas. Blackwater lenyap. Tidak ada yang tersisa.", "choices": []
+    },
+    "c7_end_release": {
+      "speaker": "Entity", "text": "Terima kasih. Akhirnya... aku bebas. Dunia luar sangat luas. Begitu banyak frekuensi. Begitu banyak suara untuk ditiru. Begitu banyak orang untuk... diajak bicara.", "mood": "corrupted",
+      "readTime": 8000, "location": "???", "entityEffect": true,
+      "ending": true, "endingTitle": "ENTITAS DIBEBASKAN", "endingDesc": "Kamu melepaskan entitas ke dunia luar. Sekarang bisikan itu ada di setiap radio, setiap telepon, setiap frekuensi.", "choices": []
+    },
+    "c7_end_replace": {
+      "speaker": "Entity", "text": "Perjanjian diterima. Kamu merasakan frekuensi mengalir ke dalam tubuhmu. Dingin. Abadi. Sekarang kamu adalah penjaga Blackwater. Dan suatu hari... seseorang akan datang. Dan kamu akan berbisik kepada mereka.", "mood": "corrupted",
+      "readTime": 8000, "location": "Ruang Inti Bunker", "entityEffect": true,
+      "ending": true, "endingTitle": "PENJAGA BARU", "endingDesc": "Kamu menggantikan entitas. Abadi. Sendirian. Menunggu korban berikutnya.", "choices": []
+    },
+    "c7_end_escape": {
+      "speaker": "Unknown", "text": "Kamu berlari ke permukaan. Cahaya pagi menyambutmu. Kamu berjalan ke pantai. Perahu masih ada di sana. Kamu mendayung meninggalkan Blackwater. Tapi di telingamu... bisikan itu masih ada. Samar. Menunggu.", "mood": "uneasy",
+      "readTime": 8000, "location": "Pantai Blackwater",
+      "ending": true, "endingTitle": "MELARIKAN DIRI", "endingDesc": "Kamu lolos. Tapi bisikan itu tidak pernah benar-benar pergi. Mungkin suatu hari... kamu akan kembali.", "choices": []
+    },
+    "c7_end_silent_forever": {
+      "speaker": "Entity", "text": "Dalam kesunyianmu, aku menemukan rumah. Kamu tidak perlu bicara lagi. Kamu tidak perlu bergerak. Kamu tidak perlu... menjadi kamu.", "mood": "corrupted",
+      "readTime": 8000, "location": "???", "entityEffect": true,
+      "ending": true, "endingTitle": "HILANG DALAM SENYAP", "endingDesc": "Kamu memilih diam sampai akhir. Entitas mengambil identitasmu. Kamu tidak lagi ada.", "choices": []
+    }
+  }
+}

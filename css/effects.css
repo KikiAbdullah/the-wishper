@@ -1,0 +1,133 @@
+/* ===================================================
+   effects.css — Animasi Efek Horror 
+   Glitch, CRT, shake, flicker, mood-based text styling
+   =================================================== */
+
+/* --- KURSOR MESIN TIK (Typewriter Cursor) --- */
+#speechText::after {
+    content: '▌';
+    animation: blink-cursor 0.8s step-end infinite;
+    color: inherit;
+    font-weight: normal;
+}
+
+@keyframes blink-cursor {
+    50% { opacity: 0; }
+}
+
+/* --- GAYA MOOD SUBTITLE --- */
+
+/* Tenang: Redup, stabil */
+.calm {
+    color: #b0b0b0;
+    text-shadow: 0 0 5px rgba(150,150,150,0.1);
+}
+
+/* Tidak nyaman: Pucat, agak bergetar */
+.uneasy {
+    color: #8a9490;
+    text-shadow: 0 0 8px rgba(100,120,110,0.15);
+    animation: subtle-flicker 4s infinite;
+}
+
+/* Tegang: Kuning pucat, berat */
+.tense {
+    color: #d4c5a0;
+    font-weight: bold;
+    text-shadow: 0 0 12px rgba(180,150,80,0.3);
+    animation: text-shake-subtle 3s infinite;
+}
+
+/* Panik: Merah menyala, bergetar kuat */
+.panic {
+    color: var(--color-accent-red);
+    text-shadow: 0 0 20px rgba(255,0,0,0.6), 0 0 40px rgba(255,0,0,0.2);
+    animation: shake-hard 0.15s infinite;
+}
+
+/* Korup / Entitas: Efek rusak dan berglitch */
+.corrupted {
+    color: #00ff88;
+    text-shadow: 
+        2px 0 #ff0000,
+        -2px 0 #0000ff,
+        0 0 15px rgba(0,255,136,0.4);
+    animation: glitch-text 0.3s infinite;
+}
+
+/* --- ANIMASI GETARAN (Shake) --- */
+
+/* Getaran halus (untuk mood tense) */
+@keyframes text-shake-subtle {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(0.5px, 0); }
+    50% { transform: translate(-0.5px, 0.5px); }
+    75% { transform: translate(0.5px, -0.5px); }
+}
+
+/* Getaran keras (untuk mood panic) */
+@keyframes shake-hard {
+    0% { transform: translate(2px, 1px) rotate(0deg); }
+    25% { transform: translate(-2px, -1px) rotate(-0.5deg); }
+    50% { transform: translate(1px, 2px) rotate(0.5deg); }
+    75% { transform: translate(-1px, -2px) rotate(0deg); }
+    100% { transform: translate(2px, 1px) rotate(0deg); }
+}
+
+/* --- EFEK GLITCH TEKS (untuk Entity) --- */
+@keyframes glitch-text {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); text-shadow: 3px 0 #ff0000, -3px 0 #0000ff; }
+    40% { transform: translate(2px, -1px); text-shadow: -2px 0 #ff0000, 2px 0 #0000ff; }
+    60% { transform: translate(-1px, 1px); }
+    80% { transform: translate(1px, -2px); text-shadow: 2px 0 #ff0000, -2px 0 #0000ff; }
+    100% { transform: translate(0); }
+}
+
+/* --- KEDIPAN HALUS (Flicker) --- */
+@keyframes subtle-flicker {
+    0%, 100% { opacity: 1; }
+    30% { opacity: 0.95; }
+    50% { opacity: 0.85; }
+    70% { opacity: 0.92; }
+    90% { opacity: 1; }
+}
+
+/* --- EFEK CHROMATIC ABERRATION UNTUK LAYAR --- */
+.chromatic-aberration {
+    animation: chromatic-shift 8s ease-in-out infinite;
+}
+
+@keyframes chromatic-shift {
+    0%, 100% { filter: none; }
+    50% { filter: drop-shadow(1px 0 0 rgba(255,0,0,0.15)) drop-shadow(-1px 0 0 rgba(0,0,255,0.15)); }
+}
+
+/* --- TRANSISI FADE ANTAR SCENE --- */
+.scene-fade-overlay {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.scene-fade-overlay.active {
+    opacity: 1;
+}
+
+/* --- EFEK LAYAR BERKEDIP (Screen Flicker) — untuk kejadian supranatural --- */
+@keyframes screen-flicker {
+    0% { opacity: 1; }
+    5% { opacity: 0.1; }
+    10% { opacity: 1; }
+    15% { opacity: 0.3; }
+    20% { opacity: 1; }
+    100% { opacity: 1; }
+}
+
+.flicker-effect {
+    animation: screen-flicker 0.5s ease-in-out;
+}

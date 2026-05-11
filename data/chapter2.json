@@ -1,0 +1,107 @@
+{
+  "chapterTitle": "BAB 2 — SINYAL RADIO",
+  "startScene": "c2_01",
+  "scenes": {
+    "c2_01": {
+      "speaker": "Luna", "text": "Kamu masih di sana? Syukurlah. Sinyal ini semakin lemah... dengarkan baik-baik.", "mood": "calm",
+      "timer": 10000, "readTime": 3000, "location": "Hutan Gelap",
+      "choices": [
+        { "text": "Aku mendengarkan.", "next": "c2_02" },
+        { "text": "Bagaimana aku bisa yakin ini kamu?", "next": "c2_02_doubt" }
+      ]
+    },
+    "c2_02": {
+      "speaker": "Luna", "text": "Ada frekuensi tersembunyi di 96.6. Jangan pernah buka frekuensi itu. Apapun yang terjadi.", "mood": "tense",
+      "timer": 10000, "readTime": 4000, "location": "Hutan Gelap",
+      "choices": [
+        { "text": "Kenapa? Apa yang ada di 96.6?", "next": "c2_03_curious" },
+        { "text": "Baiklah, aku tidak akan.", "next": "c2_03_obey" }
+      ]
+    },
+    "c2_02_doubt": {
+      "speaker": "Luna", "text": "Kamu benar untuk ragu. Tapi aku bisa buktikan. Tanyakan sesuatu yang hanya Luna yang tahu.", "mood": "calm",
+      "timer": 10000, "readTime": 3000, "location": "Hutan Gelap",
+      "choices": [
+        { "text": "Di mana kita pertama bertemu?", "next": "c2_03_test" },
+        { "text": "Aku tidak punya waktu untuk ini.", "next": "c2_03_obey" }
+      ]
+    },
+    "c2_03_curious": {
+      "speaker": "Entity", "text": "96.6... kamu penasaran kan? Buka saja. Aku menunggumu di sana.", "mood": "corrupted",
+      "timer": 8000, "readTime": 3000, "location": "Hutan Gelap", "entityEffect": true,
+      "choices": [
+        { "text": "[Buka frekuensi 96.6]", "next": "c2_end_corrupted1" },
+        { "text": "Tidak. Luna bilang jangan.", "next": "c2_04" }
+      ]
+    },
+    "c2_03_obey": {
+      "speaker": "Luna", "text": "Bagus. Sekarang ikuti jalan setapak. Ada pohon besar berlumut di persimpangan. Belok kiri.", "mood": "calm",
+      "timer": 10000, "readTime": 4000, "location": "Hutan Gelap",
+      "choices": [
+        { "text": "Belok kiri. Mengerti.", "next": "c2_04" },
+        { "text": "Bagaimana kalau belok kanan?", "next": "c2_end_lost" }
+      ]
+    },
+    "c2_03_test": {
+      "speaker": "Luna", "text": "...di dermaga tua. Kamu membawa kamera rusak. Hujan deras. Kamu bilang 'ini tempat paling menyeramkan yang pernah kulihat.'", "mood": "calm",
+      "timer": 12000, "readTime": 5000, "location": "Hutan Gelap",
+      "choices": [
+        { "text": "...itu benar. Kamu memang Luna.", "next": "c2_04" },
+        { "text": "Informasi itu bisa saja dicuri.", "next": "c2_end_paranoid" }
+      ]
+    },
+    "c2_04": {
+      "speaker": "Unknown", "text": "Kamu terus berjalan. Kabut semakin tebal. Suara langkah kaki di belakangmu... tapi kamu sendirian.", "mood": "tense",
+      "timer": 10000, "readTime": 4000, "location": "Hutan Dalam",
+      "choices": [
+        { "text": "Berhenti. Berbalik.", "next": "c2_05_confront" },
+        { "text": "Percepat langkah. Jangan lihat.", "next": "c2_05_run" }
+      ]
+    },
+    "c2_05_confront": {
+      "speaker": "Entity", "text": "Berani juga kamu. Tidak banyak yang berani berbalik. Tapi sekarang... kamu melihatku.", "mood": "panic",
+      "timer": 7000, "readTime": 4000, "location": "Hutan Dalam", "entityEffect": true,
+      "choices": [
+        { "text": "APA YANG KAMU MAU?!", "next": "c2_06" },
+        { "text": "[Tutup mata]", "next": "c2_06" }
+      ]
+    },
+    "c2_05_run": {
+      "speaker": "Unknown", "text": "Kamu berlari. Ranting patah di bawah kaki. Napas memburu. Mercusuar semakin dekat.", "mood": "panic",
+      "timer": 7000, "readTime": 3000, "location": "Hutan Dalam",
+      "choices": [
+        { "text": "Terus berlari!", "next": "c2_06" }
+      ]
+    },
+    "c2_06": {
+      "speaker": "Luna", "text": "Kamu hampir sampai. Aku bisa dengar napasmu dari radio. Sedikit lagi...", "mood": "uneasy",
+      "readTime": 4000, "location": "Pinggir Hutan",
+      "autoNext": "c2_next_chapter", "choices": []
+    },
+    "c2_next_chapter": {
+      "speaker": "System", "text": "Bab 2 selesai. Mercusuar menanti di depan...", "mood": "calm",
+      "readTime": 4000, "location": "Pinggir Hutan",
+      "nextChapter": 3, "choices": []
+    },
+    "c2_end_corrupted1": {
+      "speaker": "Entity", "text": "Selamat datang di 96.6. Frekuensi ini milikku. Dan sekarang... kamu juga milikku.", "mood": "corrupted",
+      "readTime": 6000, "location": "???", "entityEffect": true,
+      "ending": true, "endingTitle": "FREKUENSI TERLARANG", "endingDesc": "Kamu membuka 96.6. Entitas menemukanmu.", "choices": []
+    },
+    "c2_end_lost": {
+      "speaker": "Unknown", "text": "Kamu belok kanan. Jalan itu tidak pernah berakhir. Kamu berjalan berjam-jam... tapi selalu kembali ke titik yang sama.", "mood": "uneasy",
+      "readTime": 6000, "location": "Hutan Gelap",
+      "ending": true, "endingTitle": "LINGKARAN TANPA AKHIR", "endingDesc": "Kamu tersesat dalam loop waktu Blackwater.", "choices": []
+    },
+    "c2_end_paranoid": {
+      "speaker": "Unknown", "text": "Kamu tidak percaya siapa pun. Sendirian di hutan. Malam semakin dalam. Dan bisikan itu... semakin keras.", "mood": "tense",
+      "readTime": 6000, "location": "Hutan Gelap",
+      "ending": true, "endingTitle": "PARANOIA TOTAL", "endingDesc": "Ketidakpercayaan menghancurkanmu. Kamu tersesat selamanya.", "choices": []
+    },
+    "c2_end_entity_trap": {
+      "speaker": "Entity", "text": "Kamu menghentikan langkahmu. Dan itulah kesalahanmu. Yang berhenti... tidak pernah bergerak lagi.", "mood": "corrupted",
+      "readTime": 6000, "location": "Hutan Gelap", "entityEffect": true,
+      "ending": true, "endingTitle": "YANG MEMBATU", "endingDesc": "Kamu berhenti di tengah hutan. Entitas mengklaim tempatmu.", "choices": []
+    }
+  }
+}

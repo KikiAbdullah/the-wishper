@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host | The Whispers</title>
+    <meta name="description" content="TV Host Screen — The Whispers Multiplayer Horror">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/tv.css">
+    <link rel="stylesheet" href="css/effects.css">
+    <!-- Pustaka QR Code -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Pustaka Audio Howler.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+</head>
+<body>
+    <!-- Lapisan Efek Atmosfer -->
+    <div class="grain-overlay"></div>
+    <div class="fog-overlay"></div>
+    <div class="vignette-overlay"></div>
+    <div class="scanlines-overlay"></div>
+    <div class="scene-fade-overlay" id="sceneFade"></div>
+
+    <!-- Overlay Klik Pertama (Bypass Audio Autoplay) -->
+    <div id="tapToStartOverlay" class="tap-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;">
+        <h2 style="font-family:var(--font-horror);font-size:2rem;letter-spacing:8px;color:#ccc;">CLICK TO INITIALIZE</h2>
+        <p style="font-size:0.75rem;color:#555;margin-top:15px;letter-spacing:2px;font-family:var(--font-mono);">Requires Audio Access</p>
+    </div>
+
+    <!-- Kontainer Utama TV -->
+    <div id="tvContainer" style="display:none;">
+
+        <!-- HUD (Heads-Up Display) -->
+        <div class="tv-hud hud-location" id="hudLocation">BLACKWATER POINT</div>
+        <div class="tv-hud hud-radio" id="hudRadio">SIGNAL <span class="signal-dot"></span></div>
+        <div class="tv-hud" id="hudChapter" style="top:20px;right:25px;opacity:0.4;font-size:0.75rem;letter-spacing:3px;"></div>
+        <!-- HUD PIN: Tampil saat permainan berlangsung agar pemain bisa join kapan saja -->
+        <div class="tv-hud" id="hudPin" style="bottom:20px;left:25px;opacity:0.35;font-size:0.8rem;letter-spacing:4px;display:none;"></div>
+
+        <!-- ============ LAYAR MENU UTAMA ============ -->
+        <div id="menuScreen" style="display:none;">
+            <div class="lobby-screen">
+                <h1 style="font-family:var(--font-horror);font-size:3.5rem;letter-spacing:12px;color:#555;margin-bottom:15px;">THE WHISPERS</h1>
+                <p style="font-size:0.8rem;color:#333;letter-spacing:5px;margin-bottom:40px;">MULTIPLAYER HORROR EXPERIENCE</p>
+
+                <!-- Tombol Menu Utama -->
+                <div style="display:flex;flex-direction:column;gap:12px;width:300px;">
+                    <button id="newGameBtn" class="menu-btn">▶ PERMAINAN BARU</button>
+                    <button id="continueGameBtn" class="menu-btn" style="display:none;">↻ LANJUTKAN PERMAINAN</button>
+                    <button id="galleryBtn" class="menu-btn" style="color:#33cccc; border-color:#224444;">🏆 KOLEKSI ENDING</button>
+                    <button id="resetGameBtn" class="menu-btn" style="color:#555;border-color:#222;">✕ RESET SAVE</button>
+                </div>
+
+                <!-- Info Save & Gallery Counter -->
+                <div id="saveInfo" style="margin-top:25px;font-size:0.75rem;color:#333;letter-spacing:2px;"></div>
+                <div id="galleryCounter" style="margin-top:10px;font-size:0.7rem;color:#33cccc;letter-spacing:3px;opacity:0.6;"></div>
+            </div>
+        </div>
+
+        <!-- ============ LAYAR LOBBY (QR + PIN) ============ -->
+        <div class="lobby-screen" id="lobbyScreen" style="display:none;">
+            <h2 style="font-family:var(--font-horror);font-size:2rem;letter-spacing:6px;color:#555;margin-bottom:20px;">MENUNGGU PEMAIN</h2>
+            <div id="qrcode" style="margin-bottom:20px;"></div>
+            <!-- FIX #1: PIN dibuat besar dan jelas -->
+            <h1 id="roomPinDisplay" style="font-size:4rem;letter-spacing:20px;color:#ccc;font-family:var(--font-horror);text-shadow:0 0 20px rgba(200,200,200,0.2);">----</h1>
+            <p style="color:#555;font-size:0.85rem;letter-spacing:4px;margin-top:12px;">SCAN QR ATAU MASUKKAN PIN DI ATAS</p>
+            <div id="connectedPlayers" style="margin-top:20px;"></div>
+            <button id="startGameBtn" style="display:none;" class="menu-btn">MULAI PERMAINAN</button>
+        </div>
+
+        <!-- ============ LAYAR PERMAINAN ============ -->
+        <div class="game-screen" id="gameScreen" style="display:none;">
+            <div id="subtitleText"></div>
+            <!-- Panel Vote Tracker (kanan layar) -->
+            <div id="voteTrackerPanel" class="vote-tracker"></div>
+        </div>
+
+        <!-- ============ LAYAR PAUSE (Disconnect) ============ -->
+        <div id="pauseScreen" class="lobby-screen" style="display:none;">
+            <h2 style="font-family:var(--font-horror);font-size:2.5rem;letter-spacing:8px;color:#ff4444;margin-bottom:20px;">KONEKSI TERPUTUS</h2>
+            <p style="color:#555;letter-spacing:4px;font-size:0.9rem;margin-bottom:25px;">SEMUA PEMAIN TERPUTUS</p>
+            <h1 id="pausePinDisplay" style="font-size:4rem;letter-spacing:20px;color:#ccc;font-family:var(--font-horror);">----</h1>
+            <p style="color:#444;font-size:0.8rem;letter-spacing:3px;margin-top:15px;">MASUKKAN PIN INI DI HP UNTUK MELANJUTKAN</p>
+        </div>
+
+        <!-- ============ LAYAR GALERI ENDING ============ -->
+        <div id="galleryOverlay" class="tap-overlay" style="display:none; flex-direction:column; background:rgba(0,0,0,0.98);">
+            <h2 style="font-family:var(--font-horror); color:var(--color-accent-cyan); margin-bottom:10px; letter-spacing:10px;">KOLEKSI ENDING</h2>
+            <p id="galleryProgress" style="color:#555;font-size:0.75rem;letter-spacing:3px;margin-bottom:25px;"></p>
+            <div id="galleryContent" class="gallery-grid"></div>
+            <button id="closeGalleryBtn" class="menu-btn" style="margin-top:30px;">TUTUP</button>
+        </div>
+
+        <!-- ============ LAYAR ENDING ============ -->
+        <div id="endScreenContainer"></div>
+    </div>
+
+    <style>
+        /* Gaya tombol menu */
+        .menu-btn {
+            background: transparent;
+            border: 1px solid #333;
+            color: #888;
+            padding: 14px;
+            font-family: var(--font-horror);
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .menu-btn:hover {
+            border-color: #888;
+            color: #ccc;
+            text-shadow: 0 0 10px rgba(200,200,200,0.2);
+        }
+
+        /* Galeri Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            width: 85%;
+            max-height: 55vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .gallery-item {
+            border: 1px solid #222;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .gallery-item.locked { opacity: 0.3; }
+        .gallery-item.found { border-color: var(--color-accent-cyan); background: rgba(51, 204, 204, 0.05); }
+        .gallery-title { font-family: var(--font-horror); font-size: 0.9rem; letter-spacing: 2px; color: #aaa; margin-bottom: 5px; }
+        .gallery-item.found .gallery-title { color: var(--color-accent-cyan); }
+        .gallery-desc { font-family: var(--font-mono); font-size: 0.65rem; color: #444; }
+
+        /* Vote Tracker Panel (sisi kanan layar permainan) */
+        .vote-tracker {
+            position: fixed;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 280px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        .vote-tracker.visible { opacity: 1; }
+        .vote-group {
+            border: 1px solid #222;
+            padding: 10px 14px;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #555;
+            transition: all 0.4s ease;
+        }
+        .vote-group.winner {
+            border-color: #ff4444;
+            color: #ff6666;
+            box-shadow: 0 0 15px rgba(255, 50, 50, 0.15);
+        }
+        .vote-group .choice-label { color: #888; margin-bottom: 4px; display: block; }
+        .vote-group .voters { color: #444; font-size: 0.6rem; }
+        .vote-group.winner .choice-label { color: #ff6666; }
+        .vote-group.winner .voters { color: #ff4444; }
+    </style>
+
+    <script type="module" src="js/tv.js"></script>
+</body>
+</html>
